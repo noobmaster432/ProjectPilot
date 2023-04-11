@@ -1,4 +1,4 @@
-const Navbar = () => {
+const Navbar = ({ pathname }) => {
   return (
     <div>
         <h1 className="text-xl">Navbar</h1>
