@@ -6,8 +6,8 @@ import { useState } from "react";
 import useEditModal from "../../hooks/useEditModal";
 // import useUser from "../../hooks/useUser";
 
-import Input from "../Input";
-import Modal from "../Modal";
+import Input from "./Input";
+import Modal from "./Modal";
 // import ImageUpload from "../ImageUpload";
 
 const EditModal = () => {

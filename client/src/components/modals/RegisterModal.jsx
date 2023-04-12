@@ -6,8 +6,8 @@ import { toast } from "react-hot-toast";
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
 
-import Input from "../Input";
-import Modal from "../Modal";
+import Input from "./Input";
+import Modal from "./Modal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();

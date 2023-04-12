@@ -1,12 +1,25 @@
-import { FiArrowUpRight } from "react-icons/fi";
+import { BsArrowRight, BsGithub } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import ellipse from "../../assets/level_ellipse.svg";
 
-const ProjectCard = ({ title, lead, createdAt, wings, image, img }) => {
+const ProjectCard = ({ title, lead, createdAt, topics, image }) => {
   return (
-    <div className="border pb-4 sm:pb-8">
-      <img src={image} alt={title} className="w-full" />
-      <div className="flex flex-row justify-between mx-5 mt-2 mb-4">
+    <div className="bg-indigo-950 pb-4 sm:pb-8 rounded-xl hover:scale-105 transition ease-in cursor-pointer shadow-md">
+      <img
+        src={
+          image ||
+          "https://marketplace-cdn.atlassian.com/files/57abce07-c88f-4480-926d-9fa250efa337?fileType=image&mode=full-fit"
+        }
+        alt={title}
+        className="w-full rounded-t-xl"
+      />
+      <p className="mt-4 mx-5 text-lg font-semibold font-body">{title}</p>
+      <div className="mx-5 flex gap-4 my-4">
+        {topics?.map((topic) => (
+          <div className="text-[10px] text-center mx-1">{topic}</div>
+        ))}
+      </div>
+
+      <div className="flex flex-row justify-between mx-5 mb-4">
         <div className="text-center text-xs">
           <p className="text-gray-200 font-light">Started on</p>
           <div>{createdAt}</div>
@@ -16,36 +29,16 @@ const ProjectCard = ({ title, lead, createdAt, wings, image, img }) => {
           <div>{lead}</div>
         </div>
       </div>
-      <p className="mx-5 text-lg">{title}</p>
-      <div className="mx-5 flex gap-4 my-4">
-        {wings?.map((wing) => (
-          <div className="text-xs text-center mx-2">{wing}</div>
-        ))}
-      </div>
-      <div className="flex items-center mt-2 mx-5">
-        {img?.slice(0, 4).map((e, i) => {
-          return (
-            <img
-              src={ellipse}
-              key={i}
-              className="relative"
-              style={{ right: `${8 * i}px` }}
-              alt="ellipse"
-            />
-          );
-        })}
-        {img.length > 4 ? (
-          <span className="-ml-5 font-light">+{img.length - 4}</span>
-        ) : (
-          <></>
-        )}
-      </div>
-      <p className="mt-5 mx-5 text-pink-600 underline decoration-pink-600 underline-offset-4 read">
-        <Link to={`/`}>
-          Read More
-          <FiArrowUpRight className="inline text-base ml-[1px]" />
+      <div className="flex items-center justify-between px-4">
+        <Link to="/">
+          <BsGithub className="text-3xl mx-2 mt-1 hover:text-slate-200 cursor-pointer hover:scale-110 transition ease-in-out" />
         </Link>
-      </p>
+        <Link to={`/projects/:projectId`}>
+          <button className="inline-flex items-center bg-blue-600 ml-4 px-4 py-1 rounded-sm mt-2 hover:opacity-90">
+            View <BsArrowRight className="ml-2" />
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
