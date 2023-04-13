@@ -4,7 +4,7 @@ import { AiFillEdit } from "react-icons/ai";
 
 const ProjectMenu = ({ item }) => {
   return (
-    <div className="flex mb-8 items-center bg-gradient-to-r from-indigo-900 to-indigo-950 p-8 rounded-lg">
+    <div className="flex mb-8 items-center bg-zinc-900 p-8 rounded-lg">
       <img
         src={
           item.img ||

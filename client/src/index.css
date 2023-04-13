@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 :root {
-  @apply bg-gradient-to-tr from-indigo-800 via-violet-950 to-black bg-no-repeat min-h-full text-white;
-  background-color: #4834d4;
-  background-image: linear-gradient(315deg, #4834d4 0%, #1e0579 74%, #120275 100%);
+  @apply bg-gradient-to-tr from-black to-zinc-900 bg-no-repeat min-h-full text-white;
+  /* background-color: #4834d4;
+  background-image: linear-gradient(315deg, #4834d4 0%, #1e0579 74%, #120275 100%); */
 }
 
 body {

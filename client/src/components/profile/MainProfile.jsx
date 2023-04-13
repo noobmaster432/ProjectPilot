@@ -4,7 +4,7 @@ import { BsLinkedin } from "react-icons/bs";
 
 const MainProfile = () => {
   return (
-    <div className="relative bg-gradient-to-tr from-indigo-800 via-violet-950 to-blue-600 px-12 py-6 rounded-sm flex justify-between items-start">
+    <div className="relative bg-zinc-800 px-12 py-6 rounded-sm flex justify-between items-start">
       <div className="h-full self-center pr-4">
         <img
           className="w-32 h-32 object-cover rounded-full"

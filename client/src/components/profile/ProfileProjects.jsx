@@ -21,7 +21,7 @@ const ProfileProjects = () => {
   ];
   
   return (
-    <div className="bg-gradient-to-r from-indigo-800 to-indigo-700 shadow-lg px-10 py-6 rounded-sm my-6">
+    <div className="bg-zinc-800 shadow-lg px-10 py-6 rounded-sm my-6">
       <h2 className="text-xl md:text-2xl font-bold text-white">
         Projects Created
       </h2>

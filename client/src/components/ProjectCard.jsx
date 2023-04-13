@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProjectCard = ({ title, lead, createdAt, topics, image }) => {
   return (
-    <div className="bg-indigo-950 pb-4 sm:pb-8 rounded-xl hover:scale-105 transition ease-in cursor-pointer shadow-md">
+    <div className="bg-zinc-900 pb-4 sm:pb-8 rounded-xl hover:scale-105 transition ease-in cursor-pointer shadow-md">
       <img
         src={
           image ||
