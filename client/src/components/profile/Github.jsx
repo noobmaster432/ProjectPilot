@@ -8,7 +8,7 @@ const Github = () => {
         Your Github Contributions
       </h2>
       <div className="flex items-center justify-center bg-transparent">
-        <GitHubCalendar username="noobmaster432" blockSize={14} colorScheme='light' />
+        <GitHubCalendar username="noobmaster432" blockSize={14} colorScheme='dark' />
       </div>
     </div>
   );
