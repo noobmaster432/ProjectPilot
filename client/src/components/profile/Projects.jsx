@@ -54,7 +54,7 @@ const ProfileProjects = ({ isPage }) => {
   ];
 
   return (
-    <div className="bg-zinc-800 shadow-lg px-10 py-6 rounded-sm">
+    <div className={`bg-zinc-800 shadow-lg py-6 rounded-sm ${isPage ? "px-24" : "px-10"}`}>
       <h1 className="text-xl md:text-2xl font-bold mb-6">
         {isPage ? "Projects" : "Projects Contributed"}
       </h1>
