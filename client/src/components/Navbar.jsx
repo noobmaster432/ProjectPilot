@@ -15,10 +15,10 @@ const Navbar = ({ pathname }) => {
         <ul className="flex items-center">
           <li
             className={`text-slate-300 text-lg mx-4 ${
-              pathname === "/" && "font-medium text-white"
+              pathname === "/home" && "font-medium text-white"
             }`}
           >
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li
             className={`text-slate-300 ${
@@ -43,7 +43,7 @@ const Navbar = ({ pathname }) => {
               alt=""
             />
           </div>
-          <p className="text-white mx-2 font-sans">Gyan</p>
+          <p className="text-white mx-2 font-sans">Gyanendra</p>
           <IoIosArrowDown className="text-white" />
         </div>
       </div>
