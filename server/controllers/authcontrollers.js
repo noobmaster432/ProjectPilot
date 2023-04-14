@@ -10,8 +10,8 @@ require('dotenv').config()
 
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password, isAdmin } = req.body;
-    if (!name || !email || !password) {
+    const { name, email, password, github } = req.body;
+    if (!name || !email || !password || !github) {
         res.status(400)
         throw new Error("Please enter all the details properly")
     }
@@ -50,7 +50,8 @@ const registerUser = asyncHandler(async (req, res) => {
                 email: email,
                 password: await bcrypt.hash(password, salt),
                 image: req.file === undefined ? {} : fileData,
-                isAdmin: isAdmin === undefined ? false : isAdmin
+                github: github
+
             })
             const savedUser = await newUser.save();
             if (savedUser) {
@@ -191,4 +192,4 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {  registerUser, loginUser, verifyOtp, resendOTP };
+module.exports = { registerUser, loginUser, verifyOtp, resendOTP };
