@@ -13,11 +13,11 @@ const RegisterModal = () => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(registerModal.email ? registerModal.email : "");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
-
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const onToggle = useCallback(() => {

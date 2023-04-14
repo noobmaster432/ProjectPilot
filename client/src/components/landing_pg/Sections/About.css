@@ -1,0 +1,80 @@
+.Section3{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* align-items: center; */
+    justify-content:flex-start;
+    background-color: #0e1218;
+    background-size:cover;
+    background-repeat: repeat; 
+    height: 1000px;
+    background-image: url('https://github.githubassets.com/images/modules/site/home-campaign/bg-stars-1.webp');
+    /* color: white; */
+}
+
+.octicon {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    top: 5px;
+    left: 7px;
+    overflow: visible !important;
+    fill: white;
+}
+
+.svg
+{      
+    display: inline-block;
+    position: relative;
+    top: 0px;
+}
+
+.img2{
+    position: absolute;
+    z-index: 10;
+    top: 670px;
+    left: 20px;
+}
+
+.topic{
+    position: relative;
+    top: -80px;
+    left: 190px;
+}
+
+.topic h1{
+    color: white;
+    margin: 20px 0px;
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+.description_s3{
+    display: block;
+    color:#f0f8ffbc;
+    font-size: 30px;
+    margin-bottom: 55px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.container_s3{
+    position: relative;
+    top: 90px;
+    width: 1000px;
+}
+
+.s3 h1{
+    color: #4dae5f;
+}
+
+.bold{
+    color: cyan;
+    font-weight: bolder;
+}
+
+.description_s3{
+    cursor:default;
+}
+
+
