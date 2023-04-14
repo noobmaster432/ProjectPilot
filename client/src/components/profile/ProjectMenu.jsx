@@ -1,8 +1,16 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import useEditModal from "../../hooks/useEditModal";
 
 const ProjectMenu = ({ item }) => {
+  const editModal = useEditModal();
+  
+  const edit = () => {
+    editModal.onOpen();
+  }
+
   return (
     <div className="flex mb-8 items-center bg-zinc-900 p-8 rounded-lg">
       <img
@@ -26,12 +34,14 @@ const ProjectMenu = ({ item }) => {
         </div>
         <p className="font-light">{item.description}</p>
         <div className="space-x-4">
-          <button className="inline-flex items-center bg-blue-600 hover:opacity-90 px-4 py-1 rounded-sm mt-6">
+          <button className="inline-flex items-center bg-blue-600 hover:opacity-90 px-4 py-1 rounded-sm mt-6" onClick={edit}>
             Edit <AiFillEdit className="ml-2" />
           </button>
-          <button className="inline-flex items-center bg-blue-600 hover:opacity-90 px-4 py-1 rounded-sm mt-6">
-            View <BsArrowRight className="ml-2" />
-          </button>
+          <Link to={`/projects/:projectId`}>
+            <button className="inline-flex items-center bg-blue-600 hover:opacity-90 px-4 py-1 rounded-sm mt-6">
+              View <BsArrowRight className="ml-2" />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

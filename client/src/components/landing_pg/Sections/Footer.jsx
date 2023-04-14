@@ -1,7 +1,7 @@
 import React from 'react'
 import './Footer.css'
 
-export default function Footer_sec() {
+export default function FooterSec() {
   return (
     <div className='Section5'>
         <div className="svg_5">

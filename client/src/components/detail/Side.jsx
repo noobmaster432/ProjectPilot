@@ -9,7 +9,7 @@ import Button from "../modals/Button";
 
 const Side = ({ Project }) => {
   return (
-    <div className="mt-2 ml-4 mb-8">
+    <div className="mt-2 ml-4 mb-4">
       <div className="repository pr-4">
         <p className="text-sm font-semibold font-sans text-slate-300">
           Repository
@@ -176,6 +176,10 @@ const Side = ({ Project }) => {
       <a href={Project.github} target="_blank" rel="noreferrer">
         <Button label="Contribute" fullWidth={true} outline={true} />
       </a>
+
+      <div className="my-6">
+        <Button label="Report" fullWidth={true} Report={true} />
+      </div>
     </div>
   );
 };

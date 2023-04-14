@@ -3,7 +3,7 @@ import { useState } from "react";
 // import { toast } from "react-hot-toast";
 
 // import useCurrentUser from "../../hooks/useCurrentUser";
-import useEditModal from "../../hooks/useEditModal";
+import useCreateModal from "../../hooks/useCreateModal";
 // import useUser from "../../hooks/useUser";
 
 import Input from "./Input";
@@ -13,7 +13,7 @@ import Modal from "./Modal";
 const CreateModal = () => {
   // const { data: currentUser } = useCurrentUser();
   // const { mutate: mutateFetchedUser } = useUser(currentUser?.id);
-  const editModal = useEditModal();
+  const createModal = useCreateModal();
 
   // const [profileImage, setProfileImage] = useState("");
   // const [coverImage, setCoverImage] = useState("");
@@ -103,8 +103,8 @@ const CreateModal = () => {
     <div>
       <Modal
         disabled={isLoading}
-        isOpen={editModal.isOpen}
-        onClose={editModal.onClose}
+        isOpen={createModal.isOpen}
+        onClose={createModal.onClose}
         title="Create your Project"
         // onSubmit={onSubmit}
         actionLabel="Save"
