@@ -29,12 +29,12 @@ const projectSchema=mongoose.Schema({
     },
 
     repoCreatedAt:{
-        type:Date
+        type:String
     },
-    licence:{
-        type:String,
+    license:{
+        type:Object,
     },
-    visiblity:{
+    visibility:{
         type:String
     },
     forks:{
@@ -52,8 +52,12 @@ const projectSchema=mongoose.Schema({
     language:{
         type:[Object]
     },
-    readMe:{
-
+    tags:{
+        type:[String]
+    },
+    isVerified:{
+        type:String,
+        default:"false"
     }
 
 
