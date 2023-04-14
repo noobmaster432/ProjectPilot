@@ -3,7 +3,7 @@ import { BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-bl from-zinc-800 via-zinc-900 to-zinc-950 shadow-md py-8 px-4 bottom-0">
+    <div className="bg-gradient-to-bl from-zinc-800 via-zinc-900 to-zinc-950 shadow-md pt-8 pb-4 px-4 bottom-0">
       <p className="font-tag text-3xl text-center">
         Empower your team, streamline your projects !!!
       </p>

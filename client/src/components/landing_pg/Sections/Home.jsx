@@ -27,7 +27,7 @@ export default function Home() {
           alt=""
           width="400px"
         />
-        <div className="container mt-10">
+        <div className="container mt-12">
           <form onSubmit={submitHandler}>
             <div className="intro">
               <h1>Let's build from here</h1>
@@ -36,7 +36,7 @@ export default function Home() {
                 Celebrated for built-in security. Welcome to the platform
                 developers love
               </span>
-              <div className="input mt-24">
+              <div className="input mt-3">
                 <input
                   type="email"
                   value={email}

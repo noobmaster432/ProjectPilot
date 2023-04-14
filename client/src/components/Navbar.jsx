@@ -1,4 +1,5 @@
 import { IoIosArrowDown } from "react-icons/io";
+import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ pathname }) => {
@@ -40,6 +41,10 @@ const Navbar = ({ pathname }) => {
             <Link to="/profile">Profile</Link>
           </li>
         </ul>
+        <div className="flex items-center justify-center bg-zinc-800 border border-zinc-700 rounded-md px-2">
+          <input type="text" className="bg-inherit p-2 outline-none" />
+          <BiSearch className="text-zinc-300 font-extrabold text-2xl" />
+        </div>
         <div className="flex items-center">
           <div className="w-6 h-6 rounded-full">
             <img
