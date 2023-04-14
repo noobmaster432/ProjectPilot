@@ -11,6 +11,7 @@ const {adminRouter}=require('./admin/adminBro')
 //routes import
 const authRoutes=require('./routes/authroutes')
 const projectRoutes=require("./routes/projectRoutes");
+const userRoute=require("./routes/userRoute")
 const errorHandler=require("./middlewares/errorHandler")
 
 //middleware 
@@ -26,6 +27,7 @@ app.use(admin.options.rootPath, adminRouter)
 //routes middleware
 app.use("/api/auth",authRoutes);
 app.use('/api/project',projectRoutes);
+app.use("/api/user",userRoute)
 
 
 //server test route
