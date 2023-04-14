@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const projectModal=require("../models/projectModal")
 const userModal=require("../models/userModal")
+const session = require('express-session')
+const Connect = require('connect-mongo')
 
 const authenticate = async (email, password) => {
   const user = await userModal.findOne({ email });
@@ -51,7 +53,11 @@ const admin = new AdminJS({
   },
   rootPath: "/admin",
 });
+const sessionStore = new Connect({
+  mongoUrl:process.env.MONGO_URI,
+  ttl: 14 * 24 * 60 * 60
 
+})
 const adminRouter = AdminJSExpress.buildAuthenticatedRouter(
   admin,
   {
@@ -61,7 +67,7 @@ const adminRouter = AdminJSExpress.buildAuthenticatedRouter(
   },
   null,
   {
-    // store: sessionStore,
+    store: sessionStore,
     resave: true,
     saveUninitialized: true,
     secret: "sessionsecret",
