@@ -1,0 +1,94 @@
+.Section2{
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+}
+
+.intro{
+    position: relative;
+    top: 110px;
+    left: 100px;
+    width: 750px;
+}
+
+.intro h1{
+    color: white;
+    margin: 20px 0px;
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+.description{
+    color:#f0f8ffbc;
+    font-size: 30px;
+    margin-bottom: 25px;
+    padding-top: 20px;
+}
+
+.Lineimg
+    {
+        position: absolute;
+        z-index: 10;
+        top: 70px;
+        left: 15px;
+    }
+
+.moon
+    {
+        position: absolute;
+        z-index: 10;
+        bottom: -40px;
+        right: 40px;
+        animation: animate 2.5s infinite ease alternate;
+        
+    }
+
+    @keyframes animate {
+        to {
+          transform: translate3d(-50px,-60px,0px);
+        }
+      }
+
+
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+    height: 100px;
+    width: 900px;
+  }
+  
+  .input label {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  
+.input{
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+  .input input {
+    width: 400px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-top: 30px;
+    padding-left: 0.5rem;
+    height: 45px;
+  }
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 25px;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    height: 600px;
+    width: 600px;
+}
