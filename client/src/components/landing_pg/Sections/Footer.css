@@ -40,3 +40,9 @@
     width:120%;
     top: 900px;
 }
+
+.globeimg{
+    position: absolute;
+    left: 40px;
+    top: 20px;
+}
