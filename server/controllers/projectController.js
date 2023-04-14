@@ -1,4 +1,5 @@
 const projectDB = require("../models/projectModal")
+const userDB=require("../models/userModal")
 const asyncHandler = require("express-async-handler")
 const cloudinary = require("../utils/cloudinary")
 require('dotenv').config();
@@ -134,6 +135,10 @@ const createProject = asyncHandler(async (req, res) => {
         console.log(newProject);
         const savedProject = await newProject.save();
         if (savedProject) {
+            const userUpdate=await userDB.findByIdAndUpdate({_id:createdBy},{
+                $push:{projectsCreated:savedProject._id}
+            },{new:true})
+
             res.status(200).json({ message: "Successfully saved the project", savedProject })
         }
         else {
@@ -143,8 +148,9 @@ const createProject = asyncHandler(async (req, res) => {
     }
 })
 const getAllProject=asyncHandler(async(req,res)=>{
-    const projects=await projectDB.find();
+    const projects=await projectDB.find().populate('createdBy');
     if(projects){
+
         res.status(200).json({message:"Projects found successfully",projects})
     }
     else{
@@ -153,4 +159,62 @@ const getAllProject=asyncHandler(async(req,res)=>{
     }
 })
 
-module.exports = { createProject,getAllProject }
+const getParticularProject=asyncHandler(async(req,res)=>{
+    const id=req.params.id;
+    const project=await projectDB.findById({_id:id}).populate('createdBy');
+    if(project){
+        res.status(200).json({message:"Successfully got the project",project})
+
+    }
+    else{
+        res.status(404)
+        throw new Error("Project not found");
+
+    }
+})
+
+const contributeToProject=asyncHandler(async(req,res)=>{
+    const id=req.params.id;
+    const userId=req.body.userId;
+    const updatedUser=await userDB.findByIdAndUpdate({_id:id},{
+        $push:{projectsContributed:id}
+    },{new:true})
+    if(updatedUser){
+        res.status(200).json({message:"Contributing to the project"});
+    }
+    else{
+        res.status(500)
+        throw new Error("Error in contributing to project");
+    }
+
+})
+
+const deleteproject=asyncHandler(async(req,res)=>{
+    const id=req.params.id;
+    const userId=req.body.id;
+    const findProject=await projectDB.findById({_id:id});
+    if(findProject){
+        if(findProject.userId==userId){
+            const deletedProject=await projectDB.findByIdAndDelete({_id:id})
+            if(deletedProject){
+                res.status(200).json({message:"Deleted project successfully",deletedProject});
+            }
+            else{
+                res.status(400)
+                throw new Error("Error in deleting project");
+            }
+        }   
+        else{
+            res.status(400)
+            throw new Error("User not verified for deleting ");
+        }
+    }
+    else{
+        res.status(400)
+        throw new Error("Error in finding project");
+    }
+})
+
+
+
+module.exports = { createProject,getAllProject,getParticularProject,deleteproject ,contributeToProject}

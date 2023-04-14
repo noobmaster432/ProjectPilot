@@ -15,6 +15,10 @@ const projectSchema=mongoose.Schema({
        type:Object,
        required:true
     },
+    bio:{
+        type:String,
+        
+    },
     createdBy:[
         {
             type:mongoose.Schema.Types.ObjectId,
@@ -47,7 +51,7 @@ const projectSchema=mongoose.Schema({
         type:Number 
     },
     contributors:{
-        type:Number
+        type:[Object]
     },
     language:{
         type:[Object]
