@@ -23,7 +23,7 @@ export default function About() {
                     Getting Started
                     </h1>
                     <span className='description_s3 bn5'>
-                    To get started with Project Pilot, simply <a href='#' className="bold">sign up</a> for an account on the landing page. Once you're logged in, you'll have access to the admin dashboard, recruiter dashboard, and user dashboard, depending on your role in the organization.
+                    To get started with Project Pilot, simply <a href='/' className="bold">sign up</a> for an account on the landing page. Once you're logged in, you'll have access to the admin dashboard, recruiter dashboard, and user dashboard, depending on your role in the organization.
                     </span>
                 </div>
             </div>
