@@ -3,6 +3,8 @@ const asyncHandler = require("express-async-handler")
 const cloudinary = require("../utils/cloudinary")
 require('dotenv').config();
 
+const colorArray=[];
+
 const createProject = asyncHandler(async (req, res) => {
     const { title, gitHubRepoLink, createdBy } = req.body;
     if (!title || !gitHubRepoLink || !createdBy || !req.file) {
@@ -28,14 +30,17 @@ const createProject = asyncHandler(async (req, res) => {
                 fileType: req.file.mimetype,
             }
         }
-
-        const repoDetails = await (await fetch('https://api.github.com/repos/noobmaster432/yaatra', {
+        const dataArr=gitHubRepoLink.split("/");
+        const repoURL=`https://api.github.com/repos/${dataArr[3]}/${dataArr[4]}`
+        console.log(repoURL)
+        const repoDetails = await (await fetch(repoURL, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
                 "Content-Type": "application/json",
             },
         })).json()
+        console.log(repoDetails)
         const hostedLink = repoDetails.homepage;
         const eventUrl = repoDetails.events_url;
         console.log(eventUrl)
@@ -83,30 +88,32 @@ const createProject = asyncHandler(async (req, res) => {
                 "Content-Type": "application/json",
             },
         })).json()
-        // var larr=[];
-        // var ob={};
-        // for (let value of Object.keys(languageDetail)) {
-        //     console.log(value);
-        //     ob.language=value;
-        //     larr.push(ob);
-        // }
-        // var sum=0;
-        // //to get keys
-        // for (let value of Object.values(languageDetail)) {
-        //     sum=sum+value;
-        // }
-        // console.log(sum)
-        // var parr=[];
-        // // for (let value of Object.values(languageDetail)) {
-        // //     console.log(value);
-        // //     const percent=(value/sum)*100;
-        // //     ob.percent=percent;
-        // //     larr.push(ob);
-
-        // // }
-        // console.log(larr)
-        /*Language details end here */
-
+        // console.log(languageDetail)
+        var arr=[];
+        var sum=0
+         for (let value of Object.values(languageDetail)) {
+            sum=sum+value;
+        }
+        for (let value of Object.entries(languageDetail)) {
+            // console.log(value)
+            var ob={};
+            ob.language=value[0];
+            ob.percent=(value[1]/sum)*100;
+            arr.push(ob);
+        }
+        
+        arr.map((e)=>{
+            var color=Math.floor(Math.random()*16777215).toString(16);
+            while(colorArray.includes(color)){
+                color=Math.floor(Math.random()*16777215).toString(16);
+            }
+            color='#'+color;
+            colorArray.push(color);
+            e.color=color;
+        })
+        // console.log(arr)
+        
+        
         const tags = repoDetails.topics;
         const newProject = new projectDB({
             title: title,
@@ -120,9 +127,11 @@ const createProject = asyncHandler(async (req, res) => {
             visibility: visibility,
             forks: forks,
             issues: issues,
+            language:arr,
             pullRequests: pullRequests,
             tags: tags
         })
+        console.log(newProject);
         const savedProject = await newProject.save();
         if (savedProject) {
             res.status(200).json({ message: "Successfully saved the project", savedProject })
@@ -133,6 +142,15 @@ const createProject = asyncHandler(async (req, res) => {
         }
     }
 })
+const getAllProject=asyncHandler(async(req,res)=>{
+    const projects=await projectDB.find();
+    if(projects){
+        res.status(200).json({message:"Projects found successfully",projects})
+    }
+    else{
+        res.status(400)
+        throw new Error("Error in finding projects")
+    }
+})
 
-
-module.exports = { createProject }
+module.exports = { createProject,getAllProject }

@@ -10,6 +10,7 @@ const cors=require("cors")
 //routes import
 const authRoutes=require('./routes/authroutes')
 const projectRoutes=require("./routes/projectRoutes");
+const userRoutes=require("./routes/userRoute")
 const errorHandler=require("./middlewares/errorHandler")
 
 
@@ -25,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //routes middleware
 app.use("/api/auth",authRoutes);
 app.use('/api/project',projectRoutes);
-
+app.use('/api/user',userRoutes);
 
 //server test route
 app.get("/",(req,res)=>{
