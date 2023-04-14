@@ -9,6 +9,7 @@ const ProjectMenu = ({ item }) => {
   
   const edit = () => {
     editModal.onOpen();
+    console.log("hi");
   }
 
   return (

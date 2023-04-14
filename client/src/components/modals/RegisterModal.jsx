@@ -5,18 +5,20 @@ import { toast } from "react-hot-toast";
 
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
+import useRegisterModal2 from "../../hooks/useRegisterModal2";
 
 import Input from "./Input";
 import Modal from "./Modal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const registerModal2 = useRegisterModal2();
   const loginModal = useLoginModal();
 
   const [email, setEmail] = useState(registerModal.email ? registerModal.email : "");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [github, setGithub] = useState("");
   
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,13 +52,14 @@ const RegisterModal = () => {
       // });
 
       registerModal.onClose();
+      registerModal2.onOpen();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
-  }, [registerModal]);
+  }, [registerModal, registerModal2]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -73,9 +76,9 @@ const RegisterModal = () => {
         disabled={isLoading}
       />
       <Input
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Github"
+        value={github}
+        onChange={(e) => setGithub(e.target.value)}
         disabled={isLoading}
       />
       <Input

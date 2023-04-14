@@ -3,7 +3,7 @@ import { useState } from "react";
 // import { toast } from "react-hot-toast";
 
 // import useCurrentUser from "../../hooks/useCurrentUser";
-import useEditModal from "../../hooks/useEditModal";
+import useEditModalP from "../../hooks/useEditModalP";
 // import useUser from "../../hooks/useUser";
 
 import Input from "./Input";
@@ -11,15 +11,17 @@ import Modal from "./Modal";
 import ImageUpload from "./ImageUpload";
 // import ImageUpload from "../ImageUpload";
 
-const EditModal = () => {
+const EditModalP = () => {
   // const { data: currentUser } = useCurrentUser();
   // const { mutate: mutateFetchedUser } = useUser(currentUser?.id);
-  const editModal = useEditModal();
+  const editModal = useEditModalP();
 
-  const [coverImage, setCoverImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [repo, setRepo] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
   const [bio, setBio] = useState("");
+  const [name, setName] = useState("");
 
   // useEffect(() => {
   //   setProfileImage(currentUser?.profileImage);
@@ -67,28 +69,40 @@ const EditModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Input
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         disabled={isLoading}
       />
       <Input
-        placeholder="Repository Link"
-        value={repo}
-        onChange={(e) => setRepo(e.target.value)}
+        placeholder="Github"
+        value={github}
+        onChange={(e) => setGithub(e.target.value)}
         disabled={isLoading}
       />
       <Input
-        placeholder="Project Bio"
+        placeholder="Bio"
         value={bio}
         onChange={(e) => setBio(e.target.value)}
         disabled={isLoading}
       />
       <ImageUpload
-        value={coverImage}
-        onChange={(image) => setCoverImage(image)}
+        value={profileImage}
+        onChange={(image) => setProfileImage(image)}
         disabled={isLoading}
-        label="Upload Display image"
+        label="Upload Profile image"
+      />
+      <Input
+        placeholder="Twitter"
+        value={twitter}
+        onChange={(e) => setTwitter(e.target.value)}
+        disabled={isLoading}
+      />
+      <Input
+        placeholder="LinkedIn"
+        value={linkedin}
+        onChange={(e) => setLinkedin(e.target.value)}
+        disabled={isLoading}
       />
     </div>
   );
@@ -99,7 +113,7 @@ const EditModal = () => {
         disabled={isLoading}
         isOpen={editModal.isOpen}
         onClose={editModal.onClose}
-        title="Edit your Project"
+        title="Edit your Profile"
         // onSubmit={onSubmit}
         actionLabel="Save"
         body={bodyContent}
@@ -108,4 +122,4 @@ const EditModal = () => {
   );
 };
 
-export default EditModal;
+export default EditModalP;

@@ -11,6 +11,8 @@ import CreateModal from "./components/modals/CreateModal";
 import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
 import Project from "./pages/Project";
+import RegisterModal2 from "./components/modals/RegisterModal2";
+import EditModalP from "./components/modals/EditModalP";
 
 function App() {
   const { pathname } = useLocation();
@@ -28,7 +30,9 @@ function App() {
       <Footer />
       <LoginModal />
       <RegisterModal />
+      <RegisterModal2 />
       <EditModal />
+      <EditModalP />
       <CreateModal />
     </div>
   );

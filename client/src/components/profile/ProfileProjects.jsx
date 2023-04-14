@@ -5,14 +5,14 @@ const ProfileProjects = () => {
 
   const projectData = [
     {
-      // img: banner1,
+      id: 1,
       title: "Buzznet | Tweeter Clone",
       tags: ["Next.js", "Prisma", "Typescript", "Tailwind CSS"],
       description:
         "Buzznet is a Twitter clone which offers features like authentication, notifications, image upload, and responsive layout. It also provides comments/replies, and likes system to engage with posts.",
     },
     {
-      // img: banner2,
+      id: 2,
       title: "FilmFiesta | Movie Review Web App",
       tags: ["ReactJs", "Node", "Express", "MongoDB", "Material UI"],
       description:
@@ -27,7 +27,7 @@ const ProfileProjects = () => {
       </h2>
       <div className="mt-6">
         {projectData.map((item) => {
-          return <ProjectMenu item={item} />;
+          return <ProjectMenu item={item} key={item.id} />;
         })}
       </div>
     </div>

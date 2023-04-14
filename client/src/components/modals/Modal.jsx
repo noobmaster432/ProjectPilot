@@ -37,7 +37,7 @@ const Modal = ({
           {/* Content  */}
           <div className="h-full lg:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-black outline-none focus:outline-none">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 rounded-t">
+            <div className="flex items-center justify-between p-4 rounded-t">
               <h3 className="text-3xl font-semibold">{title}</h3>
               <button
                 onClick={handleClose}
