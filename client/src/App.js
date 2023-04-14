@@ -8,6 +8,9 @@ import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import EditModal from "./components/modals/EditModal";
 import CreateModal from "./components/modals/CreateModal";
+import Profile from "./pages/Profile";
+import Footer from "./components/Footer";
+import Project from "./pages/Project";
 
 function App() {
   const { pathname } = useLocation();
@@ -18,8 +21,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/projects/:projectId?" element={<Detail />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/projects" element={<Project />} />
+        <Route path="/projects/:projectId" element={<Detail />} />
       </Routes>
+      <Footer />
       <LoginModal />
       <RegisterModal />
       <EditModal />
