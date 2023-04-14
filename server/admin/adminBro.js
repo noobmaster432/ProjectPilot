@@ -8,6 +8,7 @@ const projectModal=require("../models/projectModal")
 const userModal=require("../models/userModal")
 const session = require('express-session')
 const Connect = require('connect-mongo')
+const MongoStore = require("connect-mongo");
 require("dotenv").config();
 
 const authenticate = async (email, password) => {
@@ -55,7 +56,7 @@ const admin = new AdminJS({
   rootPath: "/admin",
 });
 
-const sessionStore = new Connect({
+const sessionStore = new MongoStore({
   mongoUrl:process.env.MONGO_URI,
   ttl: 14 * 24 * 60 * 60
 
