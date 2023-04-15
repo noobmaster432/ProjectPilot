@@ -25,6 +25,10 @@ const projectSchema=mongoose.Schema({
             ref:"User"
         }
     ],
+    kanban:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Kanban'
+    },
     hostedLink:{
         type:String
     },

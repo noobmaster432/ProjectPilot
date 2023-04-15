@@ -7,11 +7,12 @@ const connect =require("./db/db")
 const cors=require("cors")
 const {admin}=require('./admin/adminBro')
 const {adminRouter}=require('./admin/adminBro')
-
+ 
 //routes import
 const authRoutes=require('./routes/authroutes')
 const projectRoutes=require("./routes/projectRoutes");
 const userRoute=require("./routes/userRoute")
+const kanbanRoute=require("./routes/kanbanroutes.js")
 const errorHandler=require("./middlewares/errorHandler")
 
 //middleware 
@@ -28,7 +29,7 @@ app.use(admin.options.rootPath, adminRouter)
 app.use("/api/auth",authRoutes);
 app.use('/api/project',projectRoutes);
 app.use("/api/user",userRoute)
-
+app.use("/api/kanban",kanbanRoute)
 
 //server test route
 app.get("/",(req,res)=>{

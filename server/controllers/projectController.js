@@ -1,5 +1,6 @@
 const projectDB = require("../models/projectModal")
 const userDB = require("../models/userModal")
+const kanbanDB=require("../models/kanbanModal")
 const asyncHandler = require("express-async-handler")
 const cloudinary = require("../utils/cloudinary")
 require('dotenv').config();
@@ -151,6 +152,7 @@ const createProject = asyncHandler(async (req, res) => {
 
         const stars = repoDetails.stargazers_count
         const tags = repoDetails.topics;
+        const newKanban=await kanbanDB.create({})
         const newProject = new projectDB({
             title: title,
             gitHubRepoLink: gitHubRepoLink,
@@ -168,7 +170,8 @@ const createProject = asyncHandler(async (req, res) => {
             pullRequests: pullRequests,
             tags: tags,
             contributors: contributors,
-            stars: stars
+            stars: stars,
+            kanban:newKanban._id
 
         })
         console.log(newProject);
@@ -200,7 +203,7 @@ const getAllProject = asyncHandler(async (req, res) => {
 
 const getParticularProject = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const project = await projectDB.findById({ _id: id }).populate('createdBy');
+    const project = await projectDB.findById({ _id: id }).populate('createdBy').populate('kanban');
     if (project) {
         res.status(200).json({ message: "Successfully got the project", project })
 
