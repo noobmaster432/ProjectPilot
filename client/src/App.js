@@ -13,12 +13,14 @@ import Footer from "./components/Footer";
 import Project from "./pages/Project";
 import RegisterModal2 from "./components/modals/RegisterModal2";
 import EditModalP from "./components/modals/EditModalP";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { pathname } = useLocation();
 
   return (
     <div className="App">
+      <Toaster />
       <Navbar pathname={pathname} />
       <Routes>
         <Route exact path="/" element={<Landing />} />

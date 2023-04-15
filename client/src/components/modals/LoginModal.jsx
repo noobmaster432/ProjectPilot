@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-// import { signIn } from "next-auth/react";
+import axios from "axios";
 
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
@@ -7,10 +7,12 @@ import useRegisterModal from "../../hooks/useRegisterModal";
 import Input from "./Input";
 import Modal from "./Modal";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,22 +31,34 @@ const LoginModal = () => {
     try {
       setIsLoading(true);
 
-      // await signIn("credentials", {
-      //   email,
-      //   password,
-      // });
+      console.log({
+        email,
+        password,
+      });
 
-      toast.success("Login successful!");
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
 
-      setIsLoading(false);
-      loginModal.onClose();
+      console.log(res.data);
+
+      if (res.status === 200) {
+        setIsLoading(false);
+        localStorage.setItem('loginData',JSON.stringify(res.data))
+
+        toast.success("Login successful!");
+
+        loginModal.onClose();
+        navigate("/home");
+      }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
-  }, [loginModal]);
+  }, [loginModal, email, password, navigate]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">

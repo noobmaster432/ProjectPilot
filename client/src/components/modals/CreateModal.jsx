@@ -8,6 +8,7 @@ import useCreateModal from "../../hooks/useCreateModal";
 
 import Input from "./Input";
 import Modal from "./Modal";
+import ImageUpload from "./ImageUpload";
 // import ImageUpload from "../ImageUpload";
 
 const CreateModal = () => {
@@ -16,7 +17,7 @@ const CreateModal = () => {
   const createModal = useCreateModal();
 
   // const [profileImage, setProfileImage] = useState("");
-  // const [coverImage, setCoverImage] = useState("");
+  const [coverImage, setCoverImage] = useState("");
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
@@ -67,18 +68,12 @@ const CreateModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      {/* <ImageUpload
-        value={profileImage}
-        onChange={(image) => setProfileImage(image)}
-        disabled={isLoading}
-        label="Upload Profile image"
-      />
       <ImageUpload
         value={coverImage}
         onChange={(image) => setCoverImage(image)}
         disabled={isLoading}
-        label="Upload Cover image"
-      /> */}
+        label="Upload Display image"
+      />
       <Input
         placeholder="Project Name"
         value={name}

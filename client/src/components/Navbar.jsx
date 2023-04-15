@@ -12,7 +12,7 @@ const Navbar = ({ pathname }) => {
     <div className="bg-gradient-to-tl from-zinc-800 via-zinc-900 to-zinc-950 shadow-md sticky h-[70px] top-0 z-50 px-24 py-4">
       <div className="flex justify-between items-center h-full">
         <div>
-          <Link to="/">
+          <Link to="/home">
             <h1 className="text-lg md:text-2xl font-medium font-title">
               Project Pilot
             </h1>

@@ -75,7 +75,7 @@ const EditModalP = () => {
         disabled={isLoading}
       />
       <Input
-        placeholder="Github"
+        placeholder="Github Username"
         value={github}
         onChange={(e) => setGithub(e.target.value)}
         disabled={isLoading}

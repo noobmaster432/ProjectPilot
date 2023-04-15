@@ -4,6 +4,7 @@ const useEditModal = create ((set) => ({
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
     onClose: () => set({ isOpen: false }),
+    data: ''
 }));
 
 export default useEditModal;

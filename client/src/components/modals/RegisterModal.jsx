@@ -1,7 +1,6 @@
-// import axios from "axios";
+import axios from "axios";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
-// import { signIn } from "next-auth/react";
 
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
@@ -33,33 +32,43 @@ const RegisterModal = () => {
 
   const onSubmit = useCallback(async () => {
     try {
+      registerModal.email = email;
       setIsLoading(true);
+      console.log({
+        email,
+        password,
+        name,
+        github
+      });
 
-      // await axios.post("/api/register", {
-      //   email,
-      //   password,
-      //   name,
-      //   username,
-      // });
+      const res = await axios.post("http://localhost:5000/api/auth/register", {
+        email,
+        password,
+        name,
+        github
+      });
 
-      setIsLoading(false);
+      console.log(res.data);
 
-      toast.success("Account created successfully!");
+      if (res.status=== 200) {
+        setIsLoading(false);
+  
+        toast.success("Account created successfully!");
 
-      // signIn("credentials", {
-      //   email,
-      //   password,
-      // });
+        registerModal.onClose();
+        registerModal2.onOpen();
+      } else {
+        toast.error("Error occured");
+      }
 
-      registerModal.onClose();
-      registerModal2.onOpen();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
-  }, [registerModal, registerModal2]);
+    console.log(registerModal.email);
+  }, [registerModal, registerModal2, email, password, name, github]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -78,7 +87,7 @@ const RegisterModal = () => {
         required={true}
       />
       <Input
-        placeholder="Github"
+        placeholder="Github Username"
         value={github}
         onChange={(e) => setGithub(e.target.value)}
         disabled={isLoading}

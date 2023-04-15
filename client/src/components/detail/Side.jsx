@@ -17,12 +17,12 @@ const Side = ({ Project }) => {
         <div className="flex items-center gap-2 my-3">
           <BsGit className="text-base text-gray-200" />
           <a
-            href={Project.github}
+            href={Project?.gitHubRepoLink}
             target="_blank"
             rel="noreferrer"
             className="text-base font-medium text-slate-200"
           >
-            {Project.github.slice(8)}
+            {Project?.gitHubRepoLink?.slice(8)}
           </a>
         </div>
       </div>
@@ -35,12 +35,12 @@ const Side = ({ Project }) => {
         <div className="flex items-center gap-2 my-3">
           <BiLink className="text-base text-gray-200" />
           <a
-            href={Project.website}
+            href={Project?.hostedLink}
             target="_blank"
             rel="noreferrer"
             className="text-base font-medium text-slate-200"
           >
-            {Project.website.slice(8)}
+            {Project?.hostedLink?.slice(8)}
           </a>
         </div>
       </div>
@@ -55,7 +55,7 @@ const Side = ({ Project }) => {
             </p>
           </div>
           <p className="text-lg font-medium text-slate-200">
-            {Project.totalActivity}
+            {Project?.totalActivity}
           </p>
         </div>
         <div className="chart">
@@ -70,12 +70,12 @@ const Side = ({ Project }) => {
             Lead By
           </p>
           <a
-            href={Project.github.slice(0, 32)}
+            href={Project?.gitHubRepoLink?.slice(0, 32)}
             target="_blank"
             rel="noreferrer"
             className="text-lg font-medium text-slate-200 pt-3"
           >
-            {Project.lead}
+            {Project?.createdBy[0]?.name}
           </a>
         </div>
         <div className="createdAt">
@@ -83,7 +83,7 @@ const Side = ({ Project }) => {
             Created At
           </p>
           <p className="text-lg font-medium text-slate-200">
-            {Project.createdAt}
+            {Project?.createdAt?.slice(0, 10)}
           </p>
         </div>
       </div>
@@ -95,7 +95,7 @@ const Side = ({ Project }) => {
             Visibility
           </p>
           <p className="text-lg font-medium text-slate-200">
-            {Project.visibility}
+            {Project?.visibility}
           </p>
         </div>
         <div className="license">
@@ -103,7 +103,7 @@ const Side = ({ Project }) => {
             License
           </p>
           <p className="text-lg font-medium text-slate-200">
-            {Project.license}
+            {Project?.license || "MIT License"}
           </p>
         </div>
       </div>
@@ -117,7 +117,7 @@ const Side = ({ Project }) => {
           <div className="flex items-center gap-2 my-1">
             <AiOutlineStar className="text-base text-gray-200" />
             <p className="text-lg font-medium text-slate-200">
-              {Project.stars}
+              {Project?.stars || 0}
             </p>
           </div>
         </div>
@@ -128,7 +128,7 @@ const Side = ({ Project }) => {
           <div className="flex items-center gap-2 my-1">
             <TbGitFork className="text-base text-gray-200" />
             <p className="text-lg font-medium text-slate-200">
-              {Project.forks}
+              {Project?.forks}
             </p>
           </div>
         </div>
@@ -143,7 +143,7 @@ const Side = ({ Project }) => {
           <div className="flex items-center gap-2 my-1">
             <GoIssueOpened className="text-base text-gray-200" />
             <p className="text-lg font-medium text-slate-200">
-              {Project.issues}
+              {Project?.issues}
             </p>
           </div>
         </div>
@@ -154,7 +154,7 @@ const Side = ({ Project }) => {
           <div className="flex items-center gap-2 my-1">
             <AiOutlinePullRequest className="text-base text-gray-200" />
             <p className="text-lg font-medium text-slate-200">
-              {Project.pullRequests}
+              {Project?.pullRequests}
             </p>
           </div>
         </div>
@@ -168,12 +168,12 @@ const Side = ({ Project }) => {
         <div className="flex items-center gap-2 my-3">
           <IoIosPeople className="text-3xl text-gray-200" />
           <p className="text-base font-medium text-slate-200">
-            {Project.totalContributors}
+            {Project?.contributors?.reduce((acc, o) => acc + Object.keys(o).length, 0)}
           </p>
         </div>
       </div>
 
-      <a href={Project.github} target="_blank" rel="noreferrer">
+      <a href={Project?.gitHubRepoLink} target="_blank" rel="noreferrer">
         <Button label="Contribute" fullWidth={true} outline={true} />
       </a>
 

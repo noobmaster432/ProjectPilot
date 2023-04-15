@@ -25,28 +25,13 @@ const registerUser = asyncHandler(async (req, res) => {
             const salt = await bcrypt.genSalt(10);
             let fileData = {};
             let uploadedFile = '';
-            if (req.file) {
-
-                uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-                    resource_type: "image",
-                    folder: 'Project Pilot'
-                })
-                if (!uploadedFile) {
-                    res.status(500)
-                    throw new Error("Error in uploading file");
-                }
-                else {
-                    console.log(uploadedFile)
-                    fileData = uploadedFile.secure_url;
-                }
-            }
-
+            
+            const githubURL='https://github.com/'+github;
             const newUser = new userDB({
                 name: name,
                 email: email,
                 password: await bcrypt.hash(password, salt),
-                image: req.file === undefined ? '' : fileData,
-                github: github
+                gitHub: githubURL
 
             })
             const savedUser = await newUser.save();
@@ -128,6 +113,7 @@ const resendOTP = asyncHandler(async (req, res) => {
 })
 const verifyOtp = asyncHandler(async (req, res) => {
     const { otp, email } = req.body;
+    console.log(req.body);
     if (!otp) {
         res.status(500)
         throw new Error("Please enter the details properly");
@@ -136,6 +122,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
     else {
         const hashedOTP = crypto.createHash("sha256").update(otp.toString()).digest("hex")
         const findToken = await tokenDB.findOne({ token: hashedOTP });
+
         if (findToken) {
             const userUpdate = await userDB.findOneAndUpdate({ email: email }, {
                 isVerified: true
@@ -144,7 +131,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
                 await tokenDB.findOneAndDelete({ token: hashedOTP });
 
                 res.status(200).json({ message: "User Verified Successfully" })
-
+ 
             }
             else {
                 res.status(500)
@@ -160,6 +147,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body);
     if (!email || !password) {
         res.status(400)
         throw new Error("Please enter all the details properly")

@@ -22,12 +22,11 @@ const EditModal = () => {
   const [bio, setBio] = useState("");
 
   // useEffect(() => {
-  //   setProfileImage(currentUser?.profileImage);
-  //   setCoverImage(currentUser?.coverImage);
-  //   setName(currentUser?.name);
-  //   setUsername(currentUser?.username);
-  //   setBio(currentUser?.bio);
-  // }, [currentUser]);
+  //   setCoverImage(editModal.data?.coverImage);
+  //   setTitle(editModal.data[0]?.name);
+  //   setRepo(editModal.data[0]?.username);
+  //   setBio(editModal.data[0]?.bio);
+  // }, [editModal.data]);
 
   // const [isLoading, setIsLoading] = useState(false);
   const isLoading = false;

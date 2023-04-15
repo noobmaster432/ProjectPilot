@@ -7,8 +7,8 @@ require('dotenv').config();
 const colorArray=[];
 
 const createProject = asyncHandler(async (req, res) => {
-    const { title, gitHubRepoLink, createdBy } = req.body;
-    if (!title || !gitHubRepoLink || !createdBy || !req.file) {
+    const { title, gitHubRepoLink, createdBy,bio } = req.body;
+    if (!title || !gitHubRepoLink || !createdBy || !req.file ||!bio) {
         res.status(500)
         throw new Error("Please submit the details properly")
     }
@@ -115,6 +115,7 @@ const createProject = asyncHandler(async (req, res) => {
         const newProject = new projectDB({
             title: title,
             gitHubRepoLink: gitHubRepoLink,
+            bio:bio,
             displayImage: fileData,
             createdBy: createdBy,
             hostedLink: hostedLink,
