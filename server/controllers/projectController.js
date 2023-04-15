@@ -267,4 +267,4 @@ const deleteproject = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { createProject, getAllProject, getParticularProject, deleteproject, contributeToProject }
+module.exports = { createProject, getAllProject, getParticularProject,updateProject, deleteproject, contributeToProject }
