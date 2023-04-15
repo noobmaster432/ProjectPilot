@@ -9,7 +9,6 @@ import useCreateModal from "../../hooks/useCreateModal";
 
 import Input from "./Input";
 import Modal from "./Modal";
-import ImageUpload from "./ImageUpload";
 import { toast } from "react-hot-toast";
 // import ImageUpload from "../ImageUpload";
 
@@ -47,12 +46,12 @@ const CreateModal = () => {
       formData.append("bio", bio);
       formData.append("gitHubRepoLink", github);
       formData.append("title", name);
-      const res=await axios.post("http://localhost:5000/api/project/createproject", formData,{
+      await axios.post("http://localhost:5000/api/project/createproject", formData,{
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Profile updated!");
+      toast.success("Project Created!");
       createModal.onClose();
     } catch (error) {
       console.log(error);
@@ -64,19 +63,13 @@ const CreateModal = () => {
     createModal,
     bio,
     name,
+    createdBy,
     github,
     coverImage
   ]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <input
-        onChange={(e) => setCoverImage(e.target.files[0])}
-        // disabled={isLoading}
-        label="Upload Display image"
-        type="file"
-        required={true}
-      />
       <Input
         placeholder="Project Name"
         value={name}
@@ -105,6 +98,21 @@ const CreateModal = () => {
         disabled={isLoading}
         required={true}
       />
+      <input
+        onChange={(e) => setCoverImage(e.target.files[0])}
+        // disabled={isLoading}
+        id="input"
+        label="Upload Display image"
+        type="file"
+        required={true}
+        className="hidden"
+      />
+      <label
+        htmlFor="input"
+        className="w-full p-2 text-zinc-400 text-base bg-black border-2 border-neutral-800 rounded-md outline-none focus:border-2 focus:border-sky-500 transition"
+      >
+        Upload Display image
+      </label>
     </div>
   );
 
