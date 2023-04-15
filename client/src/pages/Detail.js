@@ -3,8 +3,21 @@ import Main from "../components/detail/Main";
 import Side from "../components/detail/Side";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import useEditModal from "../hooks/useEditModal";
 
 const Detail = () => {
+
+  const editModal = useEditModal();
+
+  const edit = () => {
+    editModal.onOpen();
+    console.log("hi");
+  };
+
+  const del = () => {
+    console.log("deleted");
+  };
 
   const [project, setProject] = useState(undefined);
 
@@ -62,11 +75,29 @@ const Detail = () => {
 
   return (
     <div className="m-8">
-      <h1 className="text-3xl font-semibold">{project?.title}</h1>
-      <div className="flex gap-2 text-gray-500 text-base">
-        <p>{project?.visibility}</p>
-        <p className="font-bold"> - </p>
-        <p>Published on {project?.createdAt?.slice(0,10)}</p>
+      <div className="flex justify-between">
+        <div>
+          <h1 className="text-3xl font-semibold">{project?.title}</h1>
+          <div className="flex gap-2 text-gray-500 text-base">
+            <p>{project?.visibility}</p>
+            <p className="font-bold"> - </p>
+            <p>Published on {project?.createdAt?.slice(0, 10)}</p>
+          </div>
+        </div>
+        <div className="space-x-8">
+          <button
+            className="inline-flex items-center bg-blue-600 hover:opacity-90 px-4 py-1 rounded-sm mt-6"
+            onClick={edit}
+          >
+            Edit <AiFillEdit className="ml-2" />
+          </button>
+          <button
+            className="inline-flex items-center bg-red-600 hover:opacity-90 px-4 py-1 rounded-sm mt-6"
+            onClick={del}
+          >
+            Delete <AiFillDelete className="ml-2" />
+          </button>
+        </div>
       </div>
       <div className="h-[1px] bg-slate-700 mt-4" />
       <div className="flex mt-8 mx-4">

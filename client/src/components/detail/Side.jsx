@@ -1,4 +1,4 @@
-import { BsGit, BsActivity } from "react-icons/bs";
+import { BsGit, BsActivity, BsFillChatLeftTextFill } from "react-icons/bs";
 import { BiLink } from "react-icons/bi";
 import { AiOutlineStar, AiOutlinePullRequest } from "react-icons/ai";
 import { TbGitFork } from "react-icons/tb";
@@ -161,15 +161,23 @@ const Side = ({ Project }) => {
       </div>
       <div className="h-[1px] bg-slate-600 mt-4 w-full" />
 
-      <div className="contributor pr-4 mt-6 mb-8">
-        <p className="text-sm font-semibold font-sans text-slate-300">
-          Total Contributors
-        </p>
-        <div className="flex items-center gap-2 my-3">
-          <IoIosPeople className="text-3xl text-gray-200" />
-          <p className="text-base font-medium text-slate-200">
-            {Project?.contributors}
+      <div className="contributor flex pr-4 mt-6 mb-8">
+        <div className="contributor w-1/2">
+          <p className="text-sm font-semibold font-sans text-slate-300">
+            Total Contributors
           </p>
+          <div className="flex items-center gap-2 my-3">
+            <IoIosPeople className="text-3xl text-gray-200" />
+            <p className="text-base font-medium text-slate-200">
+              {Project?.contributors}
+            </p>
+          </div>
+        </div>
+        <div className="chat mt-3 ml-1 cursor-pointer hover:opacity-90">
+          <div className="bg-green-700 p-3 flex items-center justify-center space-x-3 rounded-lg">
+            <BsFillChatLeftTextFill />
+            <p>Chat</p>
+          </div>
         </div>
       </div>
 
@@ -178,7 +186,12 @@ const Side = ({ Project }) => {
       </a>
 
       <div className="my-6">
-        <Button label="Report" fullWidth={true} Report={true} />
+        <button
+          className={`bg-red-500 text-white py-2 px-4 text-md border-red-500 rounded-full font-semibold border-2 transition hover:opacity-80 w-full`}
+        >
+          {" "}
+          Report{" "}
+        </button>
       </div>
     </div>
   );
