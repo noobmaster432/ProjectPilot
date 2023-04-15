@@ -9,7 +9,6 @@ import useCreateModal from "../../hooks/useCreateModal";
 
 import Input from "./Input";
 import Modal from "./Modal";
-import ImageUpload from "./ImageUpload";
 import { toast } from "react-hot-toast";
 // import ImageUpload from "../ImageUpload";
 
@@ -47,7 +46,7 @@ const CreateModal = () => {
       formData.append("bio", bio);
       formData.append("gitHubRepoLink", github);
       formData.append("title", name);
-      const res=await axios.post("http://localhost:5000/api/project/createproject", formData,{
+      await axios.post("http://localhost:5000/api/project/createproject", formData,{
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -64,6 +63,7 @@ const CreateModal = () => {
     createModal,
     bio,
     name,
+    createdBy,
     github,
     coverImage
   ]);
