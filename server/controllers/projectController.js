@@ -1,41 +1,44 @@
 const projectDB = require("../models/projectModal")
-const userDB=require("../models/userModal")
+const userDB = require("../models/userModal")
 const asyncHandler = require("express-async-handler")
 const cloudinary = require("../utils/cloudinary")
 require('dotenv').config();
 
-const colorArray=[];
+const colorArray = [];
 
 const createProject = asyncHandler(async (req, res) => {
-    const { title, gitHubRepoLink, createdBy,bio } = req.body;
-    if (!title || !gitHubRepoLink || !createdBy || !req.file ||!bio) {
+    const { title, gitHubRepoLink, createdBy, bio } = req.body;
+    if (!title || !gitHubRepoLink || !createdBy || !req.file || !bio) {
         res.status(500)
         throw new Error("Please submit the details properly")
     }
     else {
-        let fileData = '';
-        let uploadedFile = "";
-        uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-            resource_type: "image",
-            folder: 'Project Pilot'
-        })
-        if (!uploadedFile) {
-            res.status(500)
-            throw new Error("Error in uploading file");
+        let uploadedFile;
+        let imageUrl = '';
+        if (req.file) {
+
+            uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+                resource_type: "image",
+                folder: 'Project Pilot'
+            })
+            if (!uploadedFile) {
+                res.status(500)
+                throw new Error("Error in uploading file")
+            }
+            else {
+                imageUrl = uploadedFile.secure_url;
+            }
+
         }
-        else {
-            // console.log(uploadedFile)
-            fileData = uploadedFile.secure_url;
-        }
-        const dataArr=gitHubRepoLink.split("/");
-        const repoURL=`https://api.github.com/repos/${dataArr[3]}/${dataArr[4]}`
+        const dataArr = gitHubRepoLink.split("/");
+        const repoURL = `https://api.github.com/repos/${dataArr[3]}/${dataArr[4]}`
         console.log(repoURL)
         const repoDetails = await (await fetch(repoURL, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
                 "Content-Type": "application/json",
-            }, 
+            },
         })).json()
         console.log(repoDetails)
         const hostedLink = repoDetails.homepage;
@@ -86,37 +89,37 @@ const createProject = asyncHandler(async (req, res) => {
             },
         })).json()
         // console.log(languageDetail)
-        var arr=[];
-        var sum=0
-         for (let value of Object.values(languageDetail)) {
-            sum=sum+value;
+        var arr = [];
+        var sum = 0
+        for (let value of Object.values(languageDetail)) {
+            sum = sum + value;
         }
         for (let value of Object.entries(languageDetail)) {
             // console.log(value) 
-            var ob={};
-            ob.language=value[0];
-            ob.percent=(value[1]/sum)*100;
+            var ob = {};
+            ob.language = value[0];
+            ob.percent = (value[1] / sum) * 100;
             arr.push(ob);
         }
-        
-        arr.map((e)=>{
-            var color=Math.floor(Math.random()*16777215).toString(16);
-            while(colorArray.includes(color)){
-                color=Math.floor(Math.random()*16777215).toString(16);
+
+        arr.map((e) => {
+            var color = Math.floor(Math.random() * 16777215).toString(16);
+            while (colorArray.includes(color)) {
+                color = Math.floor(Math.random() * 16777215).toString(16);
             }
-            color='#'+color;
+            color = '#' + color;
             colorArray.push(color);
-            e.color=color;
+            e.color = color;
         })
         // console.log(arr)
-        
-        
+
+        const stars = repoDetails.stargazers_count
         const tags = repoDetails.topics;
         const newProject = new projectDB({
             title: title,
             gitHubRepoLink: gitHubRepoLink,
-            bio:bio,
-            displayImage: fileData,
+            bio: bio,
+            displayImage: imageUrl,
             createdBy: createdBy,
             hostedLink: hostedLink,
             totalActivity: totalActivity,
@@ -125,16 +128,19 @@ const createProject = asyncHandler(async (req, res) => {
             visibility: visibility,
             forks: forks,
             issues: issues,
-            language:arr,
+            language: arr,
             pullRequests: pullRequests,
-            tags: tags
+            tags: tags,
+            contributors: contributors,
+            stars: stars
+
         })
         console.log(newProject);
         const savedProject = await newProject.save();
         if (savedProject) {
-            const userUpdate=await userDB.findByIdAndUpdate({_id:createdBy},{
-                $push:{projectsCreated:savedProject._id}
-            },{new:true})
+            const userUpdate = await userDB.findByIdAndUpdate({ _id: createdBy }, {
+                $push: { projectsCreated: savedProject._id }
+            }, { new: true })
 
             res.status(200).json({ message: "Successfully saved the project", savedProject })
         }
@@ -144,69 +150,116 @@ const createProject = asyncHandler(async (req, res) => {
         }
     }
 })
-const getAllProject=asyncHandler(async(req,res)=>{
-    const projects=await projectDB.find().populate('createdBy');
-    if(projects){
+const getAllProject = asyncHandler(async (req, res) => {
+    const projects = await projectDB.find().populate('createdBy');
+    if (projects) {
 
-        res.status(200).json({message:"Projects found successfully",projects})
+        res.status(200).json({ message: "Projects found successfully", projects })
     }
-    else{
+    else {
         res.status(400)
         throw new Error("Error in finding projects")
     }
 })
 
-const getParticularProject=asyncHandler(async(req,res)=>{
-    const id=req.params.id;
-    const project=await projectDB.findById({_id:id}).populate('createdBy');
-    if(project){
-        res.status(200).json({message:"Successfully got the project",project})
+const getParticularProject = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const project = await projectDB.findById({ _id: id }).populate('createdBy');
+    if (project) {
+        res.status(200).json({ message: "Successfully got the project", project })
 
     }
-    else{
+    else {
         res.status(404)
         throw new Error("Project not found");
 
     }
 })
 
-const contributeToProject=asyncHandler(async(req,res)=>{
-    const id=req.params.id;
-    const userId=req.body.userId;
-    const updatedUser=await userDB.findByIdAndUpdate({_id:id},{
-        $push:{projectsContributed:id}
-    },{new:true})
-    if(updatedUser){
-        res.status(200).json({message:"Contributing to the project"});
+const contributeToProject = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const userId = req.body.userId;
+    const updatedUser = await userDB.findByIdAndUpdate({ _id: id }, {
+        $push: { projectsContributed: id }
+    }, { new: true })
+    if (updatedUser) {
+        res.status(200).json({ message: "Contributing to the project" });
     }
-    else{
+    else {
         res.status(500)
         throw new Error("Error in contributing to project");
     }
 
 })
+const updateProject = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const findProject = await projectDB.findById({ _id: id })
+    if (findProject) {
+        const { bio, title } = req.body;
+        const updateData = {};
+        if (bio) {
+            updateData.bio = bio;
+        }
+        if (title) {
+            updateData.title = title
+        }
+        let uploadedFile;
+        let imageUrl = '';
+        if (req.file) {
 
-const deleteproject=asyncHandler(async(req,res)=>{
-    const id=req.params.id;
-    const userId=req.body.id;
-    const findProject=await projectDB.findById({_id:id});
-    if(findProject){
-        if(findProject.userId==userId){
-            const deletedProject=await projectDB.findByIdAndDelete({_id:id})
-            if(deletedProject){
-                res.status(200).json({message:"Deleted project successfully",deletedProject});
+            uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+                resource_type: "image",
+                folder: 'Project Pilot'
+            })
+            if (!uploadedFile) {
+                res.status(500)
+                throw new Error("Error in uploading file")
             }
-            else{
+            else {
+                imageUrl = uploadedFile.secure_url;
+            }
+            updateData.displayImage = imageUrl
+        }
+        const updatedProject = await projectDB.findByIdAndUpdate({ _id: id }, updateData, { new: true });
+        if (updatedProject) {
+            res.status(200).json({ message: "Updated project successfully", updatedProject })
+        }
+        else {
+            res.status(500)
+            throw new Error("Error in updating project");
+        }
+
+    }
+    else {
+        res.status(404)
+        throw new Error("No such project found");
+    }
+
+})
+const deleteproject = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const userId = req.body.id;
+    const findProject = await projectDB.findById({ _id: id });
+    if (findProject) {
+        if (findProject.userId == userId) {
+            const deletedProject = await projectDB.findByIdAndDelete({ _id: id })
+            const updatedUser = await userDB.findByIdAndUpdate({ _id: userId }, {
+                $pop: { projectsCreated: deletedProject._id }
+            })
+            if (deletedProject && updatedUser) {
+                res.status(200).json({ message: "Deleted project successfully", deletedProject });
+            }
+            else {
                 res.status(400)
                 throw new Error("Error in deleting project");
             }
-        }   
-        else{
+        }
+        else {
             res.status(400)
             throw new Error("User not verified for deleting ");
         }
     }
-    else{
+    else {
         res.status(400)
         throw new Error("Error in finding project");
     }
@@ -214,4 +267,4 @@ const deleteproject=asyncHandler(async(req,res)=>{
 
 
 
-module.exports = { createProject,getAllProject,getParticularProject,deleteproject ,contributeToProject}
+module.exports = { createProject, getAllProject, getParticularProject, deleteproject, contributeToProject }

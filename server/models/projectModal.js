@@ -52,7 +52,10 @@ const projectSchema=mongoose.Schema({
         type:Number 
     },
     contributors:{
-        type:[Object]
+        type:Number
+    },
+    stars:{
+        type:Number
     },
     language:{
         type:[Object]
