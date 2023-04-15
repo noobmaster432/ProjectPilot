@@ -1,53 +1,47 @@
-import { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import { useState } from "react";
 
-const ImageUpload = ({ onChange, value, disabled, label }) => {
-  const [base64, setBase64] = useState(value);
+const ImageUpload = ({ onChange, value, label }) => {
+  const [img, setImg] = useState(value);
 
-  const handleChange = useCallback((base64) => {
-    onChange(base64);
-  },[onChange]);
 
-  const handleDrop = useCallback((files) => {
-    const file = files[0];
-    const reader = new FileReader();
 
-    reader.onload = (event) => {
-        setBase64(event.target.result);
-        handleChange(event.target.result);
-    };
-    reader.readAsDataURL(file);
-  },[handleChange]);
+  // const handleChange = useCallback((base64) => {
+  //   onChange(base64);
+  // },[onChange]);
 
-  const { getRootProps, getInputProps } = useDropzone({
-    maxFiles: 1,
-    onDrop: handleDrop,
-    disabled,
-    accept: {
-        'image/jpeg': [],
-        'image/jpg': [],
-        'image/png': [] 
-    }
-  });
+  // const handleDrop = useCallback((files) => {
+  //   const file = files[0];
+  //   const reader = new FileReader();
+
+  //   reader.onload = (event) => {
+  //       setBase64(event.target.result);
+  //       handleChange(event.target.result);
+  //   };
+  //   reader.readAsDataURL(file);
+  // },[handleChange]);
+
+  // const { getRootProps, getInputProps } = useDropzone({
+  //   maxFiles: 1,
+  //   onDrop: handleDrop,
+  //   disabled,
+  //   accept: {
+  //       'image/jpeg': [],
+  //       'image/jpg': [],
+  //       'image/png': [] 
+  //   }
+  // });
 
   return (
     <div
-        {...getRootProps({
-            className: "w-full p-4 text-center border-2 border-dotted rounded-md border-neutral-700"
-        })}>
-        <input {...getInputProps()} />
-        {base64 ? (
-            <div className="flex items-center justify-center">
-                <image
-                    src={base64}
-                    alt="Profile image"
-                    width={100}
-                    height={100}
-                />
-            </div>
-        ): (
-            <p>{label}</p>
-        )}
+            className= "w-full p-4 text-center border-2 border-dotted rounded-md border-neutral-700"
+        // {...getRootProps({
+        // })}
+        >
+        <input type="file" onChange={(e) => {
+          setImg(e.target.files[0]);
+          console.log(e.target.files[0]);
+          console.log(img);
+        }} />
     </div>
   )
 }

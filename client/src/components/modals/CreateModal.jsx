@@ -1,5 +1,5 @@
 // import axios from "axios";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 // import { toast } from "react-hot-toast";
 
 // import useCurrentUser from "../../hooks/useCurrentUser";
@@ -9,6 +9,7 @@ import useCreateModal from "../../hooks/useCreateModal";
 import Input from "./Input";
 import Modal from "./Modal";
 import ImageUpload from "./ImageUpload";
+import { toast } from "react-hot-toast";
 // import ImageUpload from "../ImageUpload";
 
 const CreateModal = () => {
@@ -31,45 +32,50 @@ const CreateModal = () => {
   //   setBio(currentUser?.bio);
   // }, [currentUser]);
 
-  // const [isLoading, setIsLoading] = useState(false);
-  const isLoading = false;
+  const [isLoading, setIsLoading] = useState(false);
+  // const isLoading = false;
 
-  // const onSubmit = useCallback(async () => {
-  //   try {
-  //     setIsLoading(true);
+  const onSubmit = useCallback(async () => {
+    try {
+      setIsLoading(true);
 
-  //     await axios.patch("/api/edit", {
-  //       profileImage,
-  //       coverImage,
-  //       name,
-  //       username,
-  //       bio,
-  //     });
-  //     mutateFetchedUser();
+      console.log({
+        name,
+        username,
+        bio,
+        github,
+        coverImage
+    });
+      // await axios.patch("/api/edit", {
+      //   profileImage,
+      //   coverImage,
+      //   name,
+      //   username,
+      //   bio,
+      // });
+      // mutateFetchedUser();
 
-  //     toast.success("Profile updated!");
+      toast.success("Profile updated!");
 
-  //     editModal.onClose();
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error("Something went wrong");
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }, [
-  //   bio,
-  //   coverImage,
-  //   name,
-  //   profileImage,
-  //   username,
-  //   editModal,
-  //   mutateFetchedUser,
-  // ]);
+      createModal.onClose();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  }, [
+    createModal,
+    bio,
+    name,
+    github,
+    username,
+    coverImage
+  ]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <ImageUpload
-        value={coverImage}
         onChange={(image) => setCoverImage(image)}
         disabled={isLoading}
         label="Upload Display image"
@@ -112,7 +118,7 @@ const CreateModal = () => {
         isOpen={createModal.isOpen}
         onClose={createModal.onClose}
         title="Create your Project"
-        // onSubmit={onSubmit}
+        onSubmit={onSubmit}
         actionLabel="Create"
         body={bodyContent}
       />

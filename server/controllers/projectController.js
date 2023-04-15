@@ -3,11 +3,13 @@ const userDB = require("../models/userModal")
 const asyncHandler = require("express-async-handler")
 const cloudinary = require("../utils/cloudinary")
 require('dotenv').config();
+const axios=require("axios")
 
 const colorArray = [];
 
 const createProject = asyncHandler(async (req, res) => {
     const { title, gitHubRepoLink, createdBy, bio } = req.body;
+    console.log(req.body);
     if (!title || !gitHubRepoLink || !createdBy || !req.file || !bio) {
         res.status(500)
         throw new Error("Please submit the details properly")
@@ -33,24 +35,37 @@ const createProject = asyncHandler(async (req, res) => {
         const dataArr = gitHubRepoLink.split("/");
         const repoURL = `https://api.github.com/repos/${dataArr[3]}/${dataArr[4]}`
         console.log(repoURL)
-        const repoDetails = await (await fetch(repoURL, {
-            method: "GET",
+        // const repoDetails = await (await fetch(repoURL, {
+        //     method: "GET",
+        //     headers: {
+        //         Authorization: `Bearer ${process.env.GITHUBAUTH}`,
+        //         "Content-Type": "application/json",
+        //     },
+        // })).json()
+        let repoDetails = await axios.get(repoURL, {
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
                 "Content-Type": "application/json",
-            },
-        })).json()
+        }});
+        repoDetails=repoDetails.data;
         console.log(repoDetails)
         const hostedLink = repoDetails.homepage;
         const eventUrl = repoDetails.events_url;
         console.log(eventUrl)
-        const eventDetails = await (await fetch(eventUrl, {
-            method: "GET",
+        // const eventDetails = await (await fetch(eventUrl, {
+        //     method: "GET",
+        //     headers: {
+        //         Authorization: `Bearer ${process.env.GITHUBAUTH}`,
+        //         "Content-Type": "application/json",
+        //     },
+        // })).json()
+        let eventDetails=await axios.get(eventUrl, {
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
-                "Content-Type": "application/json",
-            },
-        })).json()
+                "Content-Type": "application/json",   
+            }
+        })
+        eventDetails=eventDetails.data;
         const totalActivity = eventDetails.length
         const repoCreatedAt = repoDetails.created_at;
         const license = repoDetails.license == undefined ? {} : repoDetails.license;
@@ -60,34 +75,55 @@ const createProject = asyncHandler(async (req, res) => {
         const pullDeatail = repoDetails.pulls_url;
         const pullURL = pullDeatail.slice(0, pullDeatail.length - 9)
         // console.log(pullURL)
-        const prDetails = await (await fetch(pullURL, {
-            method: "GET",
+        // const prDetails = await (await fetch(pullURL, {
+        //     method: "GET",
+        //     headers: {
+        //         Authorization: `Bearer ${process.env.GITHUBAUTH}`,
+        //         "Content-Type": "application/json",
+        //     },
+        // })).json()
+        let prDetails=await axios.get(pullURL, {
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
                 "Content-Type": "application/json",
-            },
-        })).json()
+            }
+        })
         // console.log(pullDetails);
+        prDetails=prDetails.data;
         const pullRequests = prDetails.length;
         // console.log(prDetails.length)
 
-        const contributorsDetail = await (await fetch(repoDetails.contributors_url, {
-            method: "GET",
+        // const contributorsDetail = await (await fetch(repoDetails.contributors_url, {
+        //     method: "GET",
+        //     headers: {
+        //         Authorization: `Bearer ${process.env.GITHUBAUTH}`,
+        //         "Content-Type": "application/json",
+        //     },
+        // })).json()
+        let contributorsDetail=await axios.get(repoDetails.contributors_url, {
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
                 "Content-Type": "application/json",
-            },
-        })).json()
+            }
+        });
+        contributorsDetail=contributorsDetail.data;
         const contributors = contributorsDetail.length;
         // console.log(contributorsDetail)
         /*Language details here  */
-        const languageDetail = await (await fetch(repoDetails.languages_url, {
-            method: "GET",
+        // const languageDetail = await (await fetch(repoDetails.languages_url, {
+        //     method: "GET",
+        //     headers: {
+        //         Authorization: `Bearer ${process.env.GITHUBAUTH}`,
+        //         "Content-Type": "application/json",
+        //     },
+        // })).json()
+        let languageDetail=await axios.get(repoDetails.languages_url, {
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
                 "Content-Type": "application/json",
-            },
-        })).json()
+            }
+        })
+        languageDetail=languageDetail.data;
         // console.log(languageDetail)
         var arr = [];
         var sum = 0
@@ -191,6 +227,7 @@ const contributeToProject = asyncHandler(async (req, res) => {
     }
 
 })
+
 const updateProject = asyncHandler(async (req, res) => {
     const id = req.params.id;
     const findProject = await projectDB.findById({ _id: id })
@@ -265,6 +302,4 @@ const deleteproject = asyncHandler(async (req, res) => {
     }
 })
 
-
-
-module.exports = { createProject, getAllProject, getParticularProject, deleteproject, contributeToProject }
+module.exports = { createProject, getAllProject, getParticularProject,updateProject, deleteproject, contributeToProject }

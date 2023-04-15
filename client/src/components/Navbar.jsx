@@ -1,13 +1,33 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import img from "./profile/images/default-avatar.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Navbar = ({ pathname }) => {
+  const [user, setUser] = useState(null);
 
-  if (pathname === '/') {
+  useEffect(() => {
+    const profile = async () => {
+      const loginData = JSON.parse(localStorage.getItem("loginData"));
+      const userID = loginData.other._id;
+
+      const response = await axios.get(
+        `http://localhost:5000/api/user/getuser/${userID}`
+      );
+      const user = response.data.findUser;
+      setUser(user);
+      console.log(user);
+    };
+
+    profile();
+  }, []);
+
+  if (pathname === "/") {
     return null;
   }
-  
+
   return (
     <div className="bg-gradient-to-tl from-zinc-800 via-zinc-900 to-zinc-950 shadow-md sticky h-[70px] top-0 z-50 px-24 py-4">
       <div className="flex justify-between items-center h-full">
@@ -38,7 +58,7 @@ const Navbar = ({ pathname }) => {
               pathname.includes("profile") && "font-medium text-white"
             } text-lg mx-4`}
           >
-            <Link to="/profile">Profile</Link>
+            <Link to={`/profile/${user?._id}`}>Profile</Link>
           </li>
         </ul>
         <div className="flex items-center justify-center bg-zinc-800 border border-zinc-700 rounded-md px-2">
@@ -49,11 +69,11 @@ const Navbar = ({ pathname }) => {
           <div className="w-6 h-6 rounded-full">
             <img
               className="w-6 h-6 object-cover rounded-full"
-              src="https://media.istockphoto.com/id/1204374053/photo/profile-side-view-portrait-of-his-he-nice-attractive-skilled-focused-serious-guy-writing.jpg?s=612x612&w=0&k=20&c=ohF7qYstx9E6eJXpcQUtxFJCx9jjRBHilXcFehoOGyU="
+              src={img}
               alt=""
             />
           </div>
-          <p className="text-white mx-2 font-sans">Gyanendra</p>
+          <p className="text-white mx-2 font-sans">{user?.name}</p>
           <IoIosArrowDown className="text-white" />
         </div>
       </div>
