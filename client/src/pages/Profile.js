@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MainProfile from "../components/profile/MainProfile";
 import ProfileProjects from "../components/profile/ProfileProjects";
 import Projects from "../components/profile/Projects";
@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Profile = () => {
   
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const profile=async()=>{

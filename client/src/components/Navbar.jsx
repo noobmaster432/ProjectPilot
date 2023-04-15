@@ -1,5 +1,4 @@
-import { IoIosArrowDown } from "react-icons/io";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch, BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import img from "./profile/images/default-avatar.png";
 import { useEffect, useState } from "react";
@@ -61,11 +60,11 @@ const Navbar = ({ pathname }) => {
             <Link to={`/profile/${user?._id}`}>Profile</Link>
           </li>
         </ul>
-        <div className="flex items-center justify-center bg-zinc-800 border border-zinc-700 rounded-md px-2">
+        <div className="flex items-center justify-center bg-zinc-800 border border-zinc-800 rounded-md px-2">
           <input type="text" className="bg-inherit p-2 outline-none" />
-          <BiSearch className="text-zinc-300 font-extrabold text-2xl" />
+          <BiSearch className="text-slate-400 font-extrabold text-2xl" />
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <div className="w-6 h-6 rounded-full">
             <img
               className="w-6 h-6 object-cover rounded-full"
@@ -73,8 +72,11 @@ const Navbar = ({ pathname }) => {
               alt=""
             />
           </div>
-          <p className="text-white mx-2 font-sans">{user?.name}</p>
-          <IoIosArrowDown className="text-white" />
+          <p className="text-white mx-2 font-sans text-lg">{user?.name}</p>
+          <p className="ml-2 flex items-center space-x-1 cursor-pointer font-light p-2 bg-zinc-700 rounded-md">
+            <BiLogOut />
+            <p>Logout</p>
+          </p>
         </div>
       </div>
     </div>
