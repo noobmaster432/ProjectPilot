@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
         <h1 className="text-xl">
-          <img src={pp} alt="" className="w-[98%] rounded-lg my-4 mx-auto" />
+          <img src={pp} alt="" className="w-[98%] border border-zinc-700 rounded-lg my-4 mx-auto" />
           <Kanban/>
         </h1>
     </div>
