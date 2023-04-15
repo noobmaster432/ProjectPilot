@@ -20,6 +20,7 @@ const CreateModal = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
+  const [github, setGithub] = useState("");
 
   // useEffect(() => {
   //   setProfileImage(currentUser?.profileImage);
@@ -83,18 +84,28 @@ const CreateModal = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
         disabled={isLoading}
+        required={true}
+      />
+      <Input
+        placeholder="Github"
+        value={github}
+        onChange={(e) => setGithub(e.target.value)}
+        disabled={isLoading}
+        required={true}
       />
       <Input
         placeholder="Lead By"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
       <Input
         placeholder="Bio"
         value={bio}
         onChange={(e) => setBio(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
     </div>
   );
@@ -107,7 +118,7 @@ const CreateModal = () => {
         onClose={createModal.onClose}
         title="Create your Project"
         // onSubmit={onSubmit}
-        actionLabel="Save"
+        actionLabel="Create"
         body={bodyContent}
       />
     </div>

@@ -1,4 +1,4 @@
-const Input = ({ type, placeholder, value, disabled, onChange }) => {
+const Input = ({ type, placeholder, value, disabled, onChange, required }) => {
   return (
     <input
       disabled={disabled}
@@ -6,6 +6,7 @@ const Input = ({ type, placeholder, value, disabled, onChange }) => {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      required={required}
       className="w-full p-2 text-base bg-black border-2 border-neutral-800 rounded-md outline-none focus:border-2 focus:border-sky-500 transition disabled:bg-neutral-900 disabled:cursor-not-allowed disabled:opacity-70"
     />
   );

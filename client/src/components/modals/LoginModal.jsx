@@ -53,6 +53,7 @@ const LoginModal = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
       <Input
         placeholder="Password"
@@ -60,6 +61,7 @@ const LoginModal = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
     </div>
   );

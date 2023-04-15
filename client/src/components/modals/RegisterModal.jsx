@@ -68,18 +68,21 @@ const RegisterModal = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
       <Input
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
       <Input
         placeholder="Github"
         value={github}
         onChange={(e) => setGithub(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
       <Input
         placeholder="Password"
@@ -87,6 +90,7 @@ const RegisterModal = () => {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
         disabled={isLoading}
+        required={true}
       />
     </div>
   );

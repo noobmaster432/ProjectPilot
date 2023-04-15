@@ -1,6 +1,9 @@
+import useCreateModal from "../../hooks/useCreateModal";
 import ProjectCard from "../ProjectCard";
+import { IoAddOutline } from "react-icons/io5";
 
 const ProfileProjects = ({ isPage }) => {
+  const createModal = useCreateModal();
 
   const ProjectData = [
     {
@@ -9,7 +12,6 @@ const ProfileProjects = ({ isPage }) => {
       lead: "Gyanendra",
       createdAt: "30/01/23",
       topics: ["Next.js", "Tailwind CSS", "Prisma", "MongoDB"],
-      // image: "",
     },
     {
       id: 2,
@@ -17,7 +19,6 @@ const ProfileProjects = ({ isPage }) => {
       lead: "Gyanendra",
       createdAt: "30/01/23",
       topics: ["Next.js", "Tailwind CSS", "Prisma", "MongoDB"],
-      // image: "",
     },
     {
       id: 3,
@@ -25,7 +26,6 @@ const ProfileProjects = ({ isPage }) => {
       lead: "Gyanendra",
       createdAt: "30/01/23",
       topics: ["Next.js", "Tailwind CSS", "Prisma", "MongoDB"],
-      // image: "",
     },
     {
       id: 4,
@@ -33,7 +33,6 @@ const ProfileProjects = ({ isPage }) => {
       lead: "Gyanendra",
       createdAt: "30/01/23",
       topics: ["Next.js", "Tailwind CSS", "Prisma", "MongoDB"],
-      // image: "",
     },
     {
       id: 5,
@@ -41,7 +40,6 @@ const ProfileProjects = ({ isPage }) => {
       lead: "Gyanendra",
       createdAt: "30/01/23",
       topics: ["Next.js", "Tailwind CSS", "Prisma", "MongoDB"],
-      // image: "",
     },
     {
       id: 6,
@@ -49,15 +47,33 @@ const ProfileProjects = ({ isPage }) => {
       lead: "Gyanendra",
       createdAt: "30/01/23",
       topics: ["Next.js", "Tailwind CSS", "Prisma", "MongoDB"],
-      // image: "",
     },
   ];
 
+  const add = () => {
+    createModal.onOpen();
+  }
+
   return (
-    <div className={`bg-zinc-800 shadow-lg py-6 rounded-sm ${isPage ? "px-24" : "px-10"}`}>
-      <h1 className="text-xl md:text-2xl font-bold mb-6">
-        {isPage ? "Projects" : "Projects Contributed"}
-      </h1>
+    <div
+      className={`bg-zinc-800 shadow-lg py-6 rounded-sm ${
+        isPage ? "px-24" : "px-10"
+      }`}
+    >
+      <div className="flex justify-between items-center mb-12">
+        <h1 className="text-xl md:text-2xl font-bold">
+          {isPage ? "Projects" : "Projects Contributed"}
+        </h1>
+        {isPage && (
+          <button
+            className="inline-flex mt-0 items-center bg-blue-600 hover:opacity-90 px-4 py-1 rounded-sm"
+            onClick={add}
+          >
+            <IoAddOutline className="mr-2 text-white font-extrabold" />
+            Create
+          </button>
+        )}
+      </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         {ProjectData?.map(({ title, id, lead, createdAt, topics, image }) => (
           <ProjectCard
