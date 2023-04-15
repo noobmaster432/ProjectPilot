@@ -19,26 +19,22 @@ const getUser=asyncHandler(async(req,res)=>{
 const updateUser=asyncHandler(async(req,res)=>{
     const {bio,linkedIn,twitter}=req.body;
     const id=req.params.id;
-    let fileData = {};
-    let uploadedFile = '';
+    let uploadedFile;
+    let imageUrl='';
     if (req.file) {
 
         uploadedFile = await cloudinary.uploader.upload(req.file.path, {
             resource_type: "image",
             folder: 'Project Pilot'
         })
-        if (!uploadedFile) {
+        if(!uploadedFile){
             res.status(500)
-            throw new Error("Error in uploading file");
+            throw new Error("Error in uploading file")
         }
-        else {
-            console.log(uploadedFile)
-            fileData = {
-                fileName: req.file.originalname,
-                filePath: uploadedFile.secure_url,
-                fileType: req.file.mimetype,
-            }
+        else{
+            imageUrl=uploadedFile.secure_url;
         }
+        
     }
     const findUser=await userDB.findById({_id:id})
     if(findUser){
@@ -46,7 +42,7 @@ const updateUser=asyncHandler(async(req,res)=>{
             bio:bio===undefined?findUser.bio:bio,
             linkedIn:linkedIn===undefined?findUser.linkedIn:linkedIn,
             twitter:twitter===undefined?findUser.twitter:twitter,
-            image:req.file==undefined?findUser.image:fileData
+            image:req.file==undefined?findUser.image:imageUrl
         }
         const updatedUser=await userDB.findByIdAndUpdate({_id:id},updateData,{new:true})
         if(updatedUser){
