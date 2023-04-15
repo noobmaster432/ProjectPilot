@@ -18,7 +18,6 @@ const EditModal = () => {
 
   const [coverImage, setCoverImage] = useState("");
   const [title, setTitle] = useState("");
-  const [repo, setRepo] = useState("");
   const [bio, setBio] = useState("");
 
   // useEffect(() => {
@@ -69,12 +68,6 @@ const EditModal = () => {
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        disabled={isLoading}
-      />
-      <Input
-        placeholder="Repository Link"
-        value={repo}
-        onChange={(e) => setRepo(e.target.value)}
         disabled={isLoading}
       />
       <Input

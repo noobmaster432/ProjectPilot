@@ -6,14 +6,16 @@ import Github from "../components/profile/Github";
 import axios from "axios";
 
 const Profile = () => {
+  
   const [user, setUser] = React.useState(null);
+
   useEffect(() => {
     const profile=async()=>{
       const loginData=JSON.parse(localStorage.getItem('loginData'));
-      const userID=loginData.other._id
+      const userID = loginData.other._id
       
       console.log(userID)
-      const response=await axios.get(`http://localhost:5000/api/user/getuser/${userID}`)
+      const response = await axios.get(`http://localhost:5000/api/user/getuser/${userID}`)
       const user = response.data.findUser;
       setUser(user);
 
