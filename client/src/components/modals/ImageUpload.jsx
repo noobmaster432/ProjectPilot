@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const ImageUpload = ({ onChange, value, label }) => {
   const [img, setImg] = useState(value);
-
+  console.log(img);
 
 
   // const handleChange = useCallback((base64) => {

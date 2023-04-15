@@ -1,5 +1,5 @@
 // import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { toast } from "react-hot-toast";
 
 // import useCurrentUser from "../../hooks/useCurrentUser";
@@ -19,6 +19,10 @@ const EditModal = () => {
   const [coverImage, setCoverImage] = useState("");
   const [title, setTitle] = useState("");
   const [bio, setBio] = useState("");
+
+  useEffect(() => {
+    // const fetchUser
+  })
 
   // useEffect(() => {
   //   setCoverImage(editModal.data?.coverImage);

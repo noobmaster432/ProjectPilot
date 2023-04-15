@@ -18,7 +18,6 @@ const projectSchema=mongoose.Schema({
     bio:{
         type:String,
         required:true
-        
     },
     createdBy:[
         {
