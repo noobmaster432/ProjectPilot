@@ -13,7 +13,7 @@ const createProject = asyncHandler(async (req, res) => {
         throw new Error("Please submit the details properly")
     }
     else {
-        let fileData = {};
+        let fileData = '';
         let uploadedFile = "";
         uploadedFile = await cloudinary.uploader.upload(req.file.path, {
             resource_type: "image",
@@ -25,11 +25,7 @@ const createProject = asyncHandler(async (req, res) => {
         }
         else {
             // console.log(uploadedFile)
-            fileData = {
-                fileName: req.file.originalname,
-                filePath: uploadedFile.secure_url,
-                fileType: req.file.mimetype,
-            }
+            fileData = uploadedFile.secure_url;
         }
         const dataArr=gitHubRepoLink.split("/");
         const repoURL=`https://api.github.com/repos/${dataArr[3]}/${dataArr[4]}`
@@ -39,7 +35,7 @@ const createProject = asyncHandler(async (req, res) => {
             headers: {
                 Authorization: `Bearer ${process.env.GITHUBAUTH}`,
                 "Content-Type": "application/json",
-            },
+            }, 
         })).json()
         console.log(repoDetails)
         const hostedLink = repoDetails.homepage;
@@ -96,7 +92,7 @@ const createProject = asyncHandler(async (req, res) => {
             sum=sum+value;
         }
         for (let value of Object.entries(languageDetail)) {
-            // console.log(value)
+            // console.log(value) 
             var ob={};
             ob.language=value[0];
             ob.percent=(value[1]/sum)*100;

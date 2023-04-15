@@ -13,7 +13,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, github } = req.body;
     if (!name || !email || !password || !github) {
         res.status(400)
-        throw new Error("Please enter all the details properly")
+        throw new Error("Please enter all the details properly")  
     }
     else {
         const findUser = await userDB.findOne({ email: email });
@@ -37,11 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
                 }
                 else {
                     console.log(uploadedFile)
-                    fileData = {
-                        fileName: req.file.originalname,
-                        filePath: uploadedFile.secure_url,
-                        fileType: req.file.mimetype,
-                    }
+                    fileData = uploadedFile.secure_url;
                 }
             }
 
@@ -49,7 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
                 name: name,
                 email: email,
                 password: await bcrypt.hash(password, salt),
-                image: req.file === undefined ? {} : fileData,
+                image: req.file === undefined ? '' : fileData,
                 github: github
 
             })

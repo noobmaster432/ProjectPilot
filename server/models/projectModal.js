@@ -12,7 +12,7 @@ const projectSchema=mongoose.Schema({
         required:true
     },
     displayImage:{
-       type:Object,
+       type:String,
        required:true
     },
     bio:{
