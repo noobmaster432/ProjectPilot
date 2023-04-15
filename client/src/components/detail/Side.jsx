@@ -168,7 +168,7 @@ const Side = ({ Project }) => {
         <div className="flex items-center gap-2 my-3">
           <IoIosPeople className="text-3xl text-gray-200" />
           <p className="text-base font-medium text-slate-200">
-            {Project?.contributors?.reduce((acc, o) => acc + Object.keys(o).length, 0)}
+            {Project?.contributors}
           </p>
         </div>
       </div>

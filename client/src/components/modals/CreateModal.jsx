@@ -1,6 +1,7 @@
 // import axios from "axios";
 import { useCallback, useState } from "react";
 // import { toast } from "react-hot-toast";
+import axios from 'axios';
 
 // import useCurrentUser from "../../hooks/useCurrentUser";
 import useCreateModal from "../../hooks/useCreateModal";
@@ -18,9 +19,9 @@ const CreateModal = () => {
   const createModal = useCreateModal();
 
   // const [profileImage, setProfileImage] = useState("");
-  const [coverImage, setCoverImage] = useState("");
+  const [coverImage, setCoverImage] = useState(null);
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
   const [github, setGithub] = useState("");
 
@@ -31,6 +32,8 @@ const CreateModal = () => {
   //   setUsername(currentUser?.username);
   //   setBio(currentUser?.bio);
   // }, [currentUser]);
+  const createdBy=JSON.parse(localStorage?.getItem("loginData"))?.other?._id;
+  // console.log(createdBy);
 
   const [isLoading, setIsLoading] = useState(false);
   // const isLoading = false;
@@ -38,25 +41,18 @@ const CreateModal = () => {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-
-      console.log({
-        name,
-        username,
-        bio,
-        github,
-        coverImage
-    });
-      // await axios.patch("/api/edit", {
-      //   profileImage,
-      //   coverImage,
-      //   name,
-      //   username,
-      //   bio,
-      // });
-      // mutateFetchedUser();
-
+      const formData=new FormData();
+      formData.append("image", coverImage);
+      formData.append("createdBy", createdBy);
+      formData.append("bio", bio);
+      formData.append("gitHubRepoLink", github);
+      formData.append("title", name);
+      const res=await axios.post("http://localhost:5000/api/project/createproject", formData,{
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       toast.success("Profile updated!");
-
       createModal.onClose();
     } catch (error) {
       console.log(error);
@@ -69,16 +65,17 @@ const CreateModal = () => {
     bio,
     name,
     github,
-    username,
     coverImage
   ]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <ImageUpload
-        onChange={(image) => setCoverImage(image)}
-        disabled={isLoading}
+      <input
+        onChange={(e) => setCoverImage(e.target.files[0])}
+        // disabled={isLoading}
         label="Upload Display image"
+        type="file"
+        required={true}
       />
       <Input
         placeholder="Project Name"
@@ -94,13 +91,13 @@ const CreateModal = () => {
         disabled={isLoading}
         required={true}
       />
-      <Input
+      {/* <Input
         placeholder="Lead By"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         disabled={isLoading}
         required={true}
-      />
+      /> */}
       <Input
         placeholder="Bio"
         value={bio}
