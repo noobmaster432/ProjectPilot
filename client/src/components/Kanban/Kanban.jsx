@@ -9,7 +9,7 @@ const Kanban = () => (
       id="kanban"
       keyField="Status"
       dataSource={kanbanData}
-      cardSettings={{ contentField: 'Summary', headerField: 'Title', grabberField: 'Color', tagsField: 'Tags', footerCssField: 'ClassName' }}
+      cardSettings={{ contentField: 'Summary', headerField: 'Title', grabberField: 'Color', tagsField: 'Tags', footerCssField: 'className' }}
       swimlaneSettings={{keyField:'Project'}}
     >
       <ColumnsDirective>
