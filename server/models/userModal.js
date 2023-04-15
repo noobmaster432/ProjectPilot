@@ -45,7 +45,7 @@ const userSchema = mongoose.Schema({
         default:''
     },
     image: {
-        type:Object
+        type:String
     },
     isAdmin:{
         type:Boolean,
