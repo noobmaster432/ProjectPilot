@@ -8,6 +8,26 @@ import Chart from "./chart.png";
 import Button from "../modals/Button";
 
 const Side = ({ Project }) => {
+  const hoverFunction=(e)=>{
+    e.target.style.backgroundColor="red"
+  }
+  const handleLeave=(e)=>{
+    e.target.style.backgroundColor=''
+  }
+
+  function mouseover() {
+    document.getElementById("span").style.color = "red";
+}
+
+  const style1={
+    borderRadius: "6px",
+    display: "flex",
+    height: "8px",
+    outline: "1px solid #0000",
+    overflow:" hidden",
+    width:"100%"
+} 
+  
   return (
     <div className="mt-2 ml-4 mb-4">
       <div className="repository pr-4">
@@ -192,6 +212,37 @@ const Side = ({ Project }) => {
           {" "}
           Report{" "}
         </button>
+
+      </div>
+      <div className="language">
+        {console.log(Project?.language)}
+        <h2>Languages</h2>
+        <div className="bar" style={{marginBottom:"10px"}}>
+          <span className="lineBar" style={style1}>
+            <span>
+
+            </span>
+
+            {Project?.language.map((e,index)=>{
+            console.log(e.percent)
+            
+              return(
+                <span id="span" key={index} onMouseOver={mouseover} style={{backgroundColor:
+                e.color,width:e.percent+"%",}}></span>
+                )
+            })}
+            
+            
+          </span>
+        </div>
+        <div className="keys" style={{width:"fitContent"}}>
+          {Project?.language.map((e)=>{
+          return(
+            <span style={{width:"10px",padding:"20px",height:"10px",color:e.color}}>{e.language}</span>)
+
+          
+          })}
+        </div>
       </div>
     </div>
   );

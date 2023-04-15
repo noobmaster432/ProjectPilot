@@ -10,7 +10,10 @@ const Kanban = () => (
       keyField="Status"
       dataSource={kanbanData}
       cardSettings={{ contentField: 'Summary', headerField: 'Title', grabberField: 'Color', tagsField: 'Tags', footerCssField: 'className' }}
+      enablePersistence={true}
       swimlaneSettings={{keyField:'Project'}}
+      
+      
     >
       <ColumnsDirective>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
