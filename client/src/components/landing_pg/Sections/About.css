@@ -32,8 +32,9 @@
 .img2{
     position: absolute;
     z-index: 10;
-    top: 670px;
+    top: 770px;
     left: 20px;
+    height: 800px;
 }
 
 .topic{

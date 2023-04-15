@@ -21,10 +21,9 @@ export default function Features() {
                     <br/><br/>
                     <ul className="features">
                         <li className='featuresitems'><span className="bold">Admin dashboard :</span>  Allows administrators to manage the overall operations of the platform, including user management, permissions, and integrations.</li>
-                        <li className='featuresitems'><span className="bold">Recruiter dashboard :</span>  Enables recruiters to manage the recruitment process, from posting job openings to scheduling interviews and evaluating candidates.</li>
                         <li className='featuresitems'><span className="bold">User dashboard :</span>User dashboard :  Provides candidates and employees with access to job listings, application forms, interview schedules, and other job-related tools.</li>
                         <li className='featuresitems'><span className="bold">Project management tools :</span>  Project management tools: Helps organizations manage projects more efficiently, improve communication and collaboration among team members, and increase productivity.</li>
-                        <li className='featuresitems'><span className="bold">Collaboration features :</span>  Enables team members to work together more effectively, share files, and communicate in real-time.</li>
+                        <li className='featuresitems'><span className="bold">Collaboration features :</span>  Enables team members to work together more effectivel and communicate in real-time.</li>
                         <li className='featuresitems'><span className="bold">Task management tools :</span>  Allows organizations to track tasks, assign responsibilities, and monitor progress.</li>
                     </ul>
                     </span>
