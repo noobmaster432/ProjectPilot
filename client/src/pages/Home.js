@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Kanban from "../components/Kanban/Kanban";
+import Calender from "../components/calender/calender";
 
 const category = ["Kanban", "Calender", "Discussion Forum"];
 
@@ -25,9 +26,9 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="mt-20">
+        <div className="mt-20 w-5/6">
           {currCategory === 0 && <Kanban />}
-          {currCategory === 1 && <Kanban />}
+          {currCategory === 1 && <Calender />}
           {currCategory === 2 && <Kanban />}
         </div>
       </div>
