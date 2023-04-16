@@ -1,6 +1,5 @@
 const mongoose=require('mongoose')
 
-
 const connect=(url)=>{
     mongoose.connect(url).then((e)=>{
         console.log("Connected to MONGODB successfully")
