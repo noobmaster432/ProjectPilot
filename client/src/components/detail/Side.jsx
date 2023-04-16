@@ -233,9 +233,9 @@ const Side = ({ Project }) => {
           </div>
         </div>
         <div className="chat mt-3 ml-1 cursor-pointer hover:opacity-90">
-          <div className="bg-green-700 p-3 flex items-center justify-center space-x-3 rounded-lg">
+          <div className="bg-green-700 py-3 px-4 flex items-center justify-center space-x-2 rounded-lg">
             <BsFillChatLeftTextFill />
-            <p>Chat</p>
+            <p className="text-lg">Chat</p>
           </div>
         </div>
       </div>

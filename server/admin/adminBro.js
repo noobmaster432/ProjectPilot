@@ -36,6 +36,22 @@ const admin = new AdminJS({
   // resources: AdminJSMongoose.buildResources([DriverModel]),
   resources: [
     {
+      resource: kanbanModal,
+      options: {
+        parent: {
+          // name:'Drivers'
+        },
+      },
+    },
+    {
+      resource: taskModal,
+      options: {
+        parent: {
+          // name:'Drivers'
+        },
+      },
+    },
+    {
       resource: projectModal,
       options: {
         parent: {
@@ -44,37 +60,21 @@ const admin = new AdminJS({
       },
     },
     {
-    resource: userModal,
-    options: {
+      resource: userModal,
+      options: {
         parent: {
-            // name:'Drivers'
+          // name:'Drivers'
         },
-    },
+      },
     },
     {
-      resource: taskModal,
+      resource: suggestionModal,
       options: {
-          parent: {
-              // name:'Drivers'
-          },
-      },
-      },
-      {
-        resource: suggestionModal,
-        options: {
-            parent: {
-                // name:'Drivers'
-            },
+        parent: {
+          // name:'Drivers'
         },
-        },
-        {
-          resource: kanbanModal,
-          options: {
-              parent: {
-                  // name:'Drivers'
-              },
-          },
-          }
+      },
+    },
   ],
   branding: {
     companyName: "Project Pilot",
