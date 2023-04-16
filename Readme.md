@@ -10,23 +10,22 @@ To get started with Project Pilot, simply sign up for an account on the landing 
 
 Project Pilot includes the following features:
 
-Admin dashboard: Allows administrators to manage the overall operations of the platform, including user management, permissions, and integrations.
-User dashboard: Provides candidates and employees with access to job listings, application forms, interview schedules, and other job-related tools. Users can also view and edit their profile section, which includes their GitHub info.
-Project management tools: Helps organizations manage projects more efficiently, improve communication and collaboration among team members, and increase productivity. This includes Kanban boards for visualizing project progress, a calendar for managing project timelines, and task management tools for tracking tasks and assigning responsibilities.
-Collaboration features: Enables team members to work together more effectively, share files, and communicate in real-time. This includes a chat feature for one-to-one interactions among team members, a discussion forum for team-wide communication and discussions, and the ability to contribute to projects and collaborate on tasks.
-Reporting and duplicate project detection: Users can report any duplicate projects or issues, helping to maintain project quality and avoid redundancy.
-Calendar: Project Pilot includes a calendar feature that allows teams to manage project timelines and deadlines effectively. The calendar provides a visual representation of project milestones, tasks, and deadlines, making it easy to track progress and ensure timely completion of project activities.
-Discussion forum: Project Pilot includes a discussion forum feature that promotes team-wide communication and collaboration. Team members can create discussion threads to discuss project-related topics, share ideas, and exchange information.
+- Admin dashboard: Allows administrators to manage the overall operations of the platform, including user management, permissions, and integrations.
+- User dashboard: Provides candidates and employees with access to job listings, application forms, interview schedules, and other job-related tools. Users can also view and edit their profile section, which includes their GitHub info.
+- Project management tools: Helps organizations manage projects more efficiently, improve communication and collaboration among team members, and increase productivity. This includes Kanban boards for visualizing project progress, a calendar for managing project timelines, and task management tools for tracking tasks and assigning responsibilities.
+- Collaboration features: Enables team members to work together more effectively, share files, and communicate in real-time. This includes a chat feature for one-to-one interactions among team members, a discussion forum for team-wide communication and discussions, and the ability to contribute to projects and collaborate on tasks.
+- Reporting and duplicate project detection: Users can report any duplicate projects or issues, helping to maintain project quality and avoid redundancy.
+- Calendar: Project Pilot includes a calendar feature that allows teams to manage project timelines and deadlines effectively. The calendar provides a visual representation of project milestones, tasks, and deadlines, making it easy to track progress and ensure timely completion of project activities.
+- Discussion forum: Project Pilot includes a discussion forum feature that promotes team-wide communication and collaboration. Team members can create discussion threads to discuss project-related topics, share ideas, and exchange information.
 
 ## Future Aspects
 
 Project Pilot has plans for future developments that include:
 
-Recruiters dashboard: This feature will enable budding talents to be recognized based on the projects they have worked on. Recruiters will have access to a dedicated dashboard where they can view the profiles of candidates who have contributed to projects on Project Pilot, helping them identify potential talents for recruitment.
-Resource management system: This feature will include tools for managing project resources such as team members, equipment, and materials, assigning resources to tasks, and tracking resource utilization. This will help organizations optimize resource allocation, improve team coordination, and ensure efficient utilization of project resources.
-Reporting and analytics: This feature will provide reporting and analytics capabilities for tracking project progress, performance, and outcomes. Users will be able to generate insights from project data, such as task completion rates, project milestones achieved, and team performance metrics, to support informed decision-making and project improvement.
-
-Micro-level improvements: Project Pilot aims to continuously improve and enhance its features and functionalities at micro-levels based on user feedback and needs. This includes refining user interfaces, adding new features, and optimizing performance to provide an optimal user experience and meet the evolving requirements of project management.
+- Recruiters dashboard: This feature will enable budding talents to be recognized based on the projects they have worked on. Recruiters will have access to a dedicated dashboard where they can view the profiles of candidates who have contributed to projects on Project Pilot, helping them identify potential talents for recruitment.
+- Resource management system: This feature will include tools for managing project resources such as team members, equipment, and materials, assigning resources to tasks, and tracking resource utilization. This will help organizations optimize resource allocation, improve team coordination, and ensure efficient utilization of project resources.
+- Reporting and analytics: This feature will provide reporting and analytics capabilities for tracking project progress, performance, and outcomes. Users will be able to generate insights from project data, such as task completion rates, project milestones achieved, and team performance metrics, to support informed decision-making and project improvement.
+- Micro-level improvements: Project Pilot aims to continuously improve and enhance its features and functionalities at micro-levels based on user feedback and needs. This includes refining user interfaces, adding new features, and optimizing performance to provide an optimal user experience and meet the evolving requirements of project management.
 
 ## Benefits
 
