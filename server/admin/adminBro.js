@@ -6,8 +6,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const projectModal=require("../models/projectModal")
 const userModal=require("../models/userModal")
-const kanbanModal=require('../models/kanbanModal');
-const taskModal=require('../models/taskModal');
+const suggestionModal=require("../models/suggestionModal")
+const kanbanModal=require("../models/kanbanModal")
+const taskModal=require('../models/taskModal')
 const session = require('express-session')
 const Connect = require('connect-mongo')
 const MongoStore = require("connect-mongo");
@@ -60,6 +61,14 @@ const admin = new AdminJS({
     },
     {
       resource: userModal,
+      options: {
+        parent: {
+          // name:'Drivers'
+        },
+      },
+    },
+    {
+      resource: suggestionModal,
       options: {
         parent: {
           // name:'Drivers'

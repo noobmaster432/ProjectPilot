@@ -69,9 +69,13 @@ const projectSchema=mongoose.Schema({
     isVerified:{
         type:String,
         default:"false"
-    }
-
-
+    },
+    suggestions:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Suggestion"
+        }
+    ]
 },{
     timestamps:true
 })
