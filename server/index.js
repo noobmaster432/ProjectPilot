@@ -14,6 +14,7 @@ const authRoutes=require('./routes/authroutes')
 const projectRoutes=require("./routes/projectRoutes");
 const userRoute=require("./routes/userRoute")
 const kanbanRoute=require("./routes/kanbanroutes.js")
+const suggestionRoute=require("./routes/suggestionRoute")
 const errorHandler=require("./middlewares/errorHandler")
 
 //middleware 
@@ -36,6 +37,7 @@ app.use("/api/auth",authRoutes);
 app.use('/api/project',projectRoutes);
 app.use("/api/user",userRoute)
 app.use("/api/kanban",kanbanRoute)
+app.use("/api/suggestion",suggestionRoute)
 
 //server test route
 app.get("/",(req,res)=>{
