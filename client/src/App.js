@@ -23,9 +23,9 @@ function App() {
       <Toaster />
       <Navbar pathname={pathname} />
       <Routes>
-        <Route exact path="/" element={<Landing />} />
+        <Route exact path="/" element={loginData?<Navigate to='/home'/>:<Landing/>} />
         <Route path="/home" element={loginData?<Home />:<Navigate to='/'/>} />
-        <Route path="/profile/:profileId" element={loginData?<Profile />:<Navigate to='/'/>} />
+        <Route path="/profile" element={loginData?<Profile />:<Navigate to='/'/>} />
         <Route path="/projects" element={loginData?<Project />:<Navigate to='/'/>} />
         <Route path="/projects/:projectId" element={loginData?<Detail />:<Navigate to='/'/>} />
         <Route path='*' element={<Navigate to ='/'/>}/>

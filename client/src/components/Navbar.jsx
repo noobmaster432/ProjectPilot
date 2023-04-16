@@ -11,14 +11,15 @@ const Navbar = ({ pathname }) => {
   useEffect(() => {
     const profile = async () => {
       const loginData = JSON.parse(localStorage.getItem("loginData"));
-      const userID = loginData.other._id;
-
-      const response = await axios.get(
-        `http://localhost:5000/api/user/getuser/${userID}`
-      );
-      const user = response.data.findUser;
-      setUser(user);
-      console.log(user);
+      const userName = loginData.other.name;
+      console.log(userName)
+      setUser(userName)
+      // const response = await axios.get(
+      //   `http://localhost:5000/api/user/getuser/${userID}`
+      // );
+      // const user = response.data.findUser;
+      // setUser(user);
+      // console.log(user);
     };
 
     profile();
@@ -58,7 +59,7 @@ const Navbar = ({ pathname }) => {
               pathname.includes("profile") && "font-medium text-white"
             } text-lg mx-4`}
           >
-            <Link to={`/profile/${user?._id}`}>Profile</Link>
+            <Link to={`/profile`}>Profile</Link>
           </li>
         </ul>
         <div className="flex items-center justify-center bg-zinc-800 border border-zinc-800 rounded-md px-2">
@@ -73,7 +74,7 @@ const Navbar = ({ pathname }) => {
               alt=""
             />
           </div>
-          <p className="text-white mx-2 font-sans text-lg">{user?.name || "Gyan"}</p>
+          <p className="text-white mx-2 font-sans text-lg">{user}</p>
           <p className="ml-2 flex items-center space-x-1 cursor-pointer font-light p-2 bg-zinc-700 rounded-md hover:opacity-90">
             <BiLogOut />
             <button onClick={()=>{
