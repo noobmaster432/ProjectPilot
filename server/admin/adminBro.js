@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const projectModal=require("../models/projectModal")
 const userModal=require("../models/userModal")
+const kanbanModal=require('../models/kanbanModal');
+const taskModal=require('../models/taskModal');
 const session = require('express-session')
 const Connect = require('connect-mongo')
 const MongoStore = require("connect-mongo");
@@ -33,6 +35,22 @@ const admin = new AdminJS({
   // resources: AdminJSMongoose.buildResources([DriverModel]),
   resources: [
     {
+      resource: kanbanModal,
+      options: {
+        parent: {
+          // name:'Drivers'
+        },
+      },
+    },
+    {
+      resource: taskModal,
+      options: {
+        parent: {
+          // name:'Drivers'
+        },
+      },
+    },
+    {
       resource: projectModal,
       options: {
         parent: {
@@ -41,13 +59,13 @@ const admin = new AdminJS({
       },
     },
     {
-    resource: userModal,
-    options: {
+      resource: userModal,
+      options: {
         parent: {
-            // name:'Drivers'
+          // name:'Drivers'
         },
+      },
     },
-    }
   ],
   branding: {
     companyName: "Project Pilot",
