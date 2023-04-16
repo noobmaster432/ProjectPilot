@@ -21,11 +21,35 @@ export default function Features() {
                     <br/><br/>
                     <ul className="features">
                         <li className='featuresitems'><span className="bold">Admin dashboard :</span>  Allows administrators to manage the overall operations of the platform, including user management, permissions, and integrations.</li>
-                        <li className='featuresitems'><span className="bold">User dashboard :</span>  Provides candidates and employees with access to job listings, application forms, interview schedules, and other job-related tools.</li>
-                        <li className='featuresitems'><span className="bold">Project management tools :</span>  Helps organizations manage projects more efficiently, improve communication and collaboration among team members, and increase productivity.</li>
+                        <li className='featuresitems'><span className="bold">User dashboard :</span>  Provides candidates and employees with access to job listings, application forms, interview schedules, and other job-related tools. Users can also view and edit their profile section, which includes their GitHub info.</li>
+                        <li className='featuresitems'><span className="bold">Project management tools :</span> Helps organizations manage projects more efficiently, improve communication and collaboration among team members, and increase productivity. This includes Kanban boards for visualizing project progress, a calendar for managing project timelines, and task management tools for tracking tasks and assigning responsibilities.</li>
                         
-                        <li className='featuresitems'><span className="bold">Collaboration features :</span>  Enables team members to work together more effectivel and communicate in real-time.</li>
+                        <li className='featuresitems'><span className="bold">Collaboration features :</span>  Enables team members to work together more effectively, share files, and communicate in real-time. This includes a chat feature for one-to-one interactions among team members, a discussion forum for team-wide communication and discussions, and the ability to contribute to projects and collaborate on tasks.</li>
+
                         <li className='featuresitems'><span className="bold">Task management tools :</span>  Allows organizations to track tasks, assign responsibilities, and monitor progress.</li>
+
+                        <li className='featuresitems'><span className="bold">Reporting and duplicate project detection:</span>  Users can report any duplicate projects or issues, helping to maintain project quality and avoid redundancy.</li>
+                    </ul>
+                    </span>
+                    </div>
+                    <div className="topic s4">
+                    <h1>
+                    Benefits
+                    </h1>
+                    <span className='description_s4'>
+                    Project Pilot offers the following benefits to organizations:
+                    <br/><br/>
+                    <ul className="features">
+                        <li className='featuresitems'><span className="bold">Efficient project management:</span>  The project management tools, including Kanban boards, calendar, and task management, help teams collaborate, stay organized, and meet project deadlines, resulting in improved productivity and project outcomes.
+                        </li>
+                        <li className='featuresitems'><span className="bold">Real-time collaboration: </span>  The collaboration features, such as chat and discussion forum, facilitate real-time communication and collaboration among team members, promoting efficient teamwork and knowledge sharing.</li>
+                        <li className='featuresitems'><span className="bold">Project quality maintenance:</span> The reporting and duplicate project detection feature allows users to report any issues or duplicates, helping to maintain project quality and avoid redundancy.
+                        </li>
+                        
+                        <li className='featuresitems'><span className="bold">Collaboration features :</span>  Enables team members to work together more effectively, share files, and communicate in real-time. This includes a chat feature for one-to-one interactions among team members, a discussion forum for team-wide communication and discussions, and the ability to contribute to projects and collaborate on tasks.</li>
+
+                        <li className='featuresitems'><span className="bold">User-friendly interface:</span>  Project Pilot offers an intuitive and user-friendly interface that is easy to navigate and use, making it accessible to users with varying levels of technical expertise.</li>
+
                     </ul>
                     </span>
                     </div>
