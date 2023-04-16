@@ -2,30 +2,42 @@ import { useState,useEffect } from "react";
 import Comment from "./Comment";
 import axios from "axios";
 
-// const comments = [
-//   {
-//     id: 1,
-//     name: "Yash Raj",
-//     date: "Apr 15 2023",
-//     comment:
-//       "Overall was a great project, but found some bugs and thus wanna contribute to it!",
-//   },
-//   {
-//     id: 2,
-//     name: "Sachin Kumar",
-//     date: "Apr 16 2023",
-//     comment:
-//       "Did a lot of effort in finding bugs and collaborating to it but still the code isn't merged.",
-//   },
-//   {
-//     id: 3,
-//     name: "Ankur",
-//     date: "Apr 17 2023",
-//     comment: "I am a beginner and I want to contribute to this project.",
-//   },
-// ];
+const cmt = [
+  {
+    id: 1,
+    name: "Yash Raj",
+    createdAt: "2023-04-15",
+    suggestion:
+      "I'm really impressed with the progress we've made so far. The team has been working hard and it's showing!",
+  },
+  {
+    id: 2,
+    name: "Sachin Kumar",
+    createdAt: "2023-04-16",
+    suggestion:
+      "Great job on the design! The user interface looks sleek and intuitive. Can't wait to see it in action",
+  },
+  {
+    id: 3,
+    name: "Ankur Kumar",
+    createdAt: "2023-04-17",
+    suggestion: "I think we should consider adding more features to make the project more robust. What do you all think?",
+  },
+  {
+    id: 4,
+    name: "Rahul Singh",
+    createdAt: "2023-04-17",
+    suggestion: "Just a friendly reminder to everyone to update their progress in the project management tool. It helps us stay on track and avoid any delays.",
+  },
+  {
+    id: 5,
+    name: "Himanshu Sharma",
+    createdAt: "2023-04-17",
+    suggestion: "Has anyone else encountered this bug? I've been trying to replicate it, but I can't seem to figure out what's causing it.",
+  },
+];
 
-const Comments = ({ project }) => {
+const Comments = ({ project, isPage }) => {
     console.log(project?._id);
     // const loginDetail=localStorage.getItem('loginDetail');
     // const userID=JSON.parse(loginDetail);
@@ -63,13 +75,18 @@ const Comments = ({ project }) => {
   }
   
   return (
-    <div className="bg-zinc-800 shadow-lg rounded-sm mt-6 p-6 mb-8">
+    <div className={`bg-zinc-800 shadow-lg rounded-sm p-6 mb-8 ${isPage ? "h-fit -mt-20 mx-4" : "mt-6"}`}>
       <h1 className="text-3xl font-semibold">Discussion</h1>
       <div className="bg-gray-400 h-[1px] mb-10 mt-2" />
       <div>
         {comments?.map((comment) => (
           <Comment comment={comment} key={comment._id} />
         ))}
+        {isPage && (
+           cmt?.map((comment) => (
+            <Comment comment={comment} key={comment._id} />
+          ))
+        )}
       </div>
       <form onSubmit={handleClick}>
         <input
