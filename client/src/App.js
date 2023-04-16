@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
@@ -17,17 +17,19 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   const { pathname } = useLocation();
-
+  const loginData=JSON.parse(localStorage.getItem('loginData'))
+  {console.log(loginData)}
   return (
     <div className="App">
       <Toaster />
       <Navbar pathname={pathname} />
       <Routes>
         <Route exact path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/profile/:profileId" element={<Profile />} />
-        <Route path="/projects" element={<Project />} />
-        <Route path="/projects/:projectId" element={<Detail />} />
+        <Route path="/home" element={loginData?<Home />:<Navigate to='/'/>} />
+        <Route path="/profile/:profileId" element={loginData?<Profile />:<Navigate to='/'/>} />
+        <Route path="/projects" element={loginData?<Project />:<Navigate to='/'/>} />
+        <Route path="/projects/:projectId" element={loginData?<Detail />:<Navigate to='/'/>} />
+        <Route path='*' element={<Navigate to ='/'/>}/>
       </Routes>
       <Footer />
       <LoginModal />
