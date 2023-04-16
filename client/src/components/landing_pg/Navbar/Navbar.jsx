@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className="topbarWrapper">
             <div className="topLeft">
             <ul className="toplist">
-                <Link className='link' smooth to='/'><li className="toplistItem logoimg font-title text-3xl">Project Pilot</li></Link>
+                <Link className='link' smooth to='/'><li className="toplistItem logoimg font-title text-3xl pt-4">Project Pilot</li></Link>
               </ul>
             </div>
             <div className="topRight">

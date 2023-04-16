@@ -22,12 +22,12 @@ export default function Home() {
     <>
       <div className="Section2">
         <img
-          className="Lineimg"
+          className="Lineimg -z-10"
           src="https://github.githubassets.com/images/modules/site/home-campaign/lines-hero.svg"
           alt=""
-          width="400px"
+          width="380px"
         />
-        <div className="container mt-12">
+        <div className="container mt-16">
           <form onSubmit={submitHandler}>
             <div className="intro">
               <h1>Let's build from here</h1>
@@ -36,7 +36,7 @@ export default function Home() {
                 Celebrated for built-in security. Welcome to the platform
                 developers love
               </span>
-              <div className="input mt-3">
+              <div className="input mt-6">
                 <input
                   type="email"
                   value={email}
@@ -54,7 +54,7 @@ export default function Home() {
             alt=""
             width="300px"
             height="350px"
-          ></img>
+          />
         </div>
       </div>
     </>

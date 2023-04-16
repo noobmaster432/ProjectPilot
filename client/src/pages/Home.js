@@ -31,11 +31,6 @@ const Home = () => {
           {currCategory === 2 && <Kanban />}
         </div>
       </div>
-      {/* <img
-        src={pp}
-        alt=""
-        className="w-[98%] border border-zinc-700 rounded-lg my-4 mx-auto"
-      /> */}
     </div>
   );
 };

@@ -2,7 +2,6 @@ import { BiSearch, BiLogOut } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import img from "./profile/images/default-avatar.png";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Navbar = ({ pathname }) => {
   const [user, setUser] = useState(null);
@@ -14,14 +13,7 @@ const Navbar = ({ pathname }) => {
       const userName = loginData.other.name;
       console.log(userName)
       setUser(userName)
-      // const response = await axios.get(
-      //   `http://localhost:5000/api/user/getuser/${userID}`
-      // );
-      // const user = response.data.findUser;
-      // setUser(user);
-      // console.log(user);
     };
-
     profile();
   }, []);
 
