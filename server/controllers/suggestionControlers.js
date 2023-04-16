@@ -48,7 +48,7 @@ const getSuggestions=async(req,res)=>{
         if (!project) {
           return res.status(404).json('Project not found');
         }
-        console.log(project.suggestions);
+        // console.log(project.suggestions);
         res.status(200).json(project.suggestions);
       } catch (error) {
         console.log(error);

@@ -4,7 +4,7 @@ import './Kanban.css'
 import { kanbanData, kanbanGrid } from './dummy';
 
 const Kanban = () => (
-  <div className="container">
+  <div className="container -mt-14 -mb-6">
     <KanbanComponent
       id="kanban"
       keyField="Status"
