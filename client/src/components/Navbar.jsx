@@ -55,7 +55,7 @@ const Navbar = ({ pathname }) => {
           </li>
         </ul>
         <div className="flex items-center justify-center bg-zinc-800 border border-zinc-800 rounded-md px-2">
-          <input type="text" className="bg-inherit p-2 outline-none" />
+          <input type="text" placeholder="Search Projects" className="bg-inherit p-2 outline-none" />
           <BiSearch className="text-slate-400 font-extrabold text-2xl" />
         </div>
         <div className="flex items-center justify-center">
