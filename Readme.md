@@ -24,7 +24,6 @@ Project Pilot includes the following features:
 
 Project Pilot offers the following benefits to organizations:
 
-- Streamlined recruitment process: With the recruiter dashboard, organizations can efficiently manage job openings, applications, interviews, and candidate evaluations, helping to streamline the recruitment process and find the best-fit candidates.
 
 - Efficient project management: The project management tools, including Kanban boards, calendar, and task management, help teams collaborate, stay organized, and meet project deadlines, resulting in improved productivity and project outcomes.
 
