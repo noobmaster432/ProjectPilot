@@ -19,7 +19,10 @@ const errorHandler=require("./middlewares/errorHandler")
 //middleware 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://project-pilot-ten.vercel.app"],
+    origin: [
+        "http://localhost:3000", 
+        "https://project-pilot-ten.vercel.app"
+    ],
   })
 );
 

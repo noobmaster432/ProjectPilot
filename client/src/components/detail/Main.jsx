@@ -1,3 +1,5 @@
+import Comments from "./Comments";
+
 const Main = ({ Project }) => {
   return (
     <div className="w-4/6 pr-8">
@@ -17,6 +19,8 @@ const Main = ({ Project }) => {
         ))}
       </div>
       <p className="text-xl font-body mt-6">{Project?.bio}</p>
+      <div className="h-[1px] bg-slate-600 mt-16 mb-8 w-full" />
+      <Comments project={Project} />
     </div>
   );
 }
