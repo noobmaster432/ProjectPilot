@@ -1,11 +1,12 @@
 import { BiSearch, BiLogOut } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "./profile/images/default-avatar.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Navbar = ({ pathname }) => {
   const [user, setUser] = useState(null);
+  const navigate=useNavigate();
 
   useEffect(() => {
     const profile = async () => {
@@ -72,10 +73,15 @@ const Navbar = ({ pathname }) => {
               alt=""
             />
           </div>
-          <p className="text-white mx-2 font-sans text-lg">{user?.name}</p>
-          <p className="ml-2 flex items-center space-x-1 cursor-pointer font-light p-2 bg-zinc-700 rounded-md">
+          <p className="text-white mx-2 font-sans text-lg">{user?.name || "Gyan"}</p>
+          <p className="ml-2 flex items-center space-x-1 cursor-pointer font-light p-2 bg-zinc-700 rounded-md hover:opacity-90">
             <BiLogOut />
-            <p>Logout</p>
+            <button onClick={()=>{
+              localStorage.removeItem('loginData');
+              navigate("/");
+            }}>
+            Log out
+            </button>
           </p>
         </div>
       </div>

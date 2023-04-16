@@ -18,7 +18,6 @@ import { Toaster } from "react-hot-toast";
 function App() {
   const { pathname } = useLocation();
   const loginData=JSON.parse(localStorage.getItem('loginData'))
-  {console.log(loginData)}
   return (
     <div className="App">
       <Toaster />

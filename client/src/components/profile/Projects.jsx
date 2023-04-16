@@ -91,7 +91,7 @@ const ProfileProjects = ({ isPage }) => {
         )}
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-        {ProjectData?.map(
+        {isPage && (ProjectData?.map(
           ({
             title,
             _id,
@@ -116,7 +116,33 @@ const ProfileProjects = ({ isPage }) => {
               }
             />
           )
-        )}
+        ))}
+        {!isPage && (ProjectData.splice(0,4)?.map(
+          ({
+            title,
+            _id,
+            createdBy,
+            createdAt,
+            tags,
+            displayImage,
+            gitHubRepoLink,
+          }) => (
+            <ProjectCard
+              key={_id}
+              id={_id}
+              title={title}
+              lead={createdBy[0].name}
+              createdAt={createdAt}
+              topics={tags}
+              gitHubRepoLink={gitHubRepoLink}
+              image={
+                displayImage
+                  ? displayImage
+                  : "https://marketplace-cdn.atlassian.com/files/57abce07-c88f-4480-926d-9fa250efa337?fileType=image&mode=full-fit"
+              }
+            />
+          )
+        ))}
       </div>
     </div>
   );

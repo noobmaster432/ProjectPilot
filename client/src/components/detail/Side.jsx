@@ -8,12 +8,12 @@ import Chart from "./chart.png";
 import Button from "../modals/Button";
 
 const Side = ({ Project }) => {
-  const hoverFunction=(e)=>{
-    e.target.style.backgroundColor="red"
-  }
-  const handleLeave=(e)=>{
-    e.target.style.backgroundColor=''
-  }
+  // const hoverFunction=(e)=>{
+  //   e.target.style.backgroundColor="red"
+  // }
+  // const handleLeave=(e)=>{
+  //   e.target.style.backgroundColor=''
+  // }
 
   function mouseover() {
     document.getElementById("span").style.color = "red";
@@ -105,6 +105,45 @@ const Side = ({ Project }) => {
           <p className="text-lg font-medium text-slate-200">
             {Project?.createdAt?.slice(0, 10)}
           </p>
+        </div>
+      </div>
+      <div className="h-[1px] bg-slate-600 mt-4 w-full" />
+
+      <div className="language pr-4 mt-6">
+        <p className="text-sm font-semibold mb-4 font-sans text-slate-300 pb-1">
+          Languages
+        </p>
+        <div className="bar" style={{ marginBottom: "10px" }}>
+          <span className="lineBar" style={style1}>
+            <span></span>
+            {Project?.language.map((e, index) => {
+              console.log(e.percent);
+              return (
+                <span
+                  id="span"
+                  key={index}
+                  onMouseOver={mouseover}
+                  style={{ backgroundColor: e.color, width: e.percent + "%" }}
+                ></span>
+              );
+            })}
+          </span>
+        </div>
+        <div className="keys" style={{ width: "fitContent" }}>
+          {Project?.language.map((e) => {
+            return (
+              <span
+                style={{
+                  width: "10px",
+                  padding: "20px",
+                  height: "10px",
+                  color: e.color,
+                }}
+              >
+                {e.language}
+              </span>
+            );
+          })}
         </div>
       </div>
       <div className="h-[1px] bg-slate-600 mt-4 w-full" />
@@ -212,37 +251,6 @@ const Side = ({ Project }) => {
           {" "}
           Report{" "}
         </button>
-
-      </div>
-      <div className="language">
-        {console.log(Project?.language)}
-        <h2>Languages</h2>
-        <div className="bar" style={{marginBottom:"10px"}}>
-          <span className="lineBar" style={style1}>
-            <span>
-
-            </span>
-
-            {Project?.language.map((e,index)=>{
-            console.log(e.percent)
-            
-              return(
-                <span id="span" key={index} onMouseOver={mouseover} style={{backgroundColor:
-                e.color,width:e.percent+"%",}}></span>
-                )
-            })}
-            
-            
-          </span>
-        </div>
-        <div className="keys" style={{width:"fitContent"}}>
-          {Project?.language.map((e)=>{
-          return(
-            <span style={{width:"10px",padding:"20px",height:"10px",color:e.color}}>{e.language}</span>)
-
-          
-          })}
-        </div>
       </div>
     </div>
   );
