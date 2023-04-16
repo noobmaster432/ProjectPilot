@@ -9,6 +9,7 @@ const cmt = [
     createdAt: "2023-04-15",
     suggestion:
       "I'm really impressed with the progress we've made so far. The team has been working hard and it's showing!",
+    img:"https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
   {
     id: 2,
@@ -16,24 +17,28 @@ const cmt = [
     createdAt: "2023-04-16",
     suggestion:
       "Great job on the design! The user interface looks sleek and intuitive. Can't wait to see it in action",
+    img:"https://images.pexels.com/photos/10513822/pexels-photo-10513822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
   {
     id: 3,
     name: "Ankur Kumar",
     createdAt: "2023-04-17",
     suggestion: "I think we should consider adding more features to make the project more robust. What do you all think?",
+    img:"https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
   },
   {
     id: 4,
     name: "Rahul Singh",
     createdAt: "2023-04-17",
     suggestion: "Just a friendly reminder to everyone to update their progress in the project management tool. It helps us stay on track and avoid any delays.",
+    img:"https://images.pexels.com/photos/3973335/pexels-photo-3973335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
   {
     id: 5,
-    name: "Himanshu Sharma",
+    name: "Himani Sharma",
     createdAt: "2023-04-17",
     suggestion: "Has anyone else encountered this bug? I've been trying to replicate it, but I can't seem to figure out what's causing it.",
+    img:"https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
 ];
 
