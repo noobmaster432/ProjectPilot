@@ -1,10 +1,11 @@
-const express=require('express')
+const express=require('express');
 const app=express();
 const port=process.env.PORT||5000;
 require('dotenv').config();
 const connect =require("./db/db")
 // const bodyParser=require('body-parser')
 const cors=require("cors")
+
 const {admin}=require('./admin/adminBro')
 const {adminRouter}=require('./admin/adminBro')
  
@@ -16,9 +17,11 @@ const kanbanRoute=require("./routes/kanbanroutes.js")
 const errorHandler=require("./middlewares/errorHandler")
 
 //middleware 
-app.use(cors({
-    origin:["http://localhost:3000"]
-}))
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://project-pilot-ten.vercel.app"],
+  })
+);
 
 app.use(express.json());
 // app.use(bodyParser.json());
