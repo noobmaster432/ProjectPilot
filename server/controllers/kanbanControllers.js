@@ -114,4 +114,8 @@ const deleteTask=asyncHandler(async(req,res)=>{
 
 })
 
+const getAllTask=asyncHandler(async(req,res)=>{
+    
+})
+
 module.exports = { test, createTask ,editTask,deleteTask};
