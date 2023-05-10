@@ -43,9 +43,8 @@ const cmt = [
 ];
 
 const Comments = ({ project, isPage }) => {
-    console.log(project?._id);
-    const loginData = JSON.parse(localStorage.getItem("loginData"));
-    const userID = loginData?.other?._id;
+  const loginData = JSON.parse(localStorage.getItem("loginData"));
+  const userID = loginData?.other?._id;
 
   const [comment, setComment] = useState("");
   const { comments, fetchComments, postComment } = useCommentStore();

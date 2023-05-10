@@ -10,9 +10,7 @@ const Navbar = ({ pathname }) => {
   useEffect(() => {
     const profile = async () => {
       const loginData = JSON.parse(localStorage.getItem("loginData"));
-      const userName = loginData.other.name;
-      console.log(userName)
-      setUser(userName)
+      setUser(loginData.other.name);
     };
     profile();
   }, []);

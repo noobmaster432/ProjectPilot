@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MainProfile from "../components/profile/MainProfile";
 import ProfileProjects from "../components/profile/ProfileProjects";
 import Projects from "../components/profile/Projects";
 import Github from "../components/profile/Github";
-import axios from "axios";
+import useUserStore from "../hooks/useUserStore";
 
 const Profile = () => {
-  
-  const [user, setUser] = useState(null);
+  const { user, login } = useUserStore();
 
   useEffect(() => {
-    const profile=async()=>{
-      const loginData=JSON.parse(localStorage.getItem('loginData'));
-      const userID = loginData.other._id
-      
-      console.log(userID)
-      const response = await axios.get(`http://localhost:5000/api/user/getuser/${userID}`)
-      const user = response.data.findUser;
-      setUser(user);
-
-    }
-  
-    profile();
-  }, [])
+    login();
+  }, [login]);
   
   return (
     <div className="px-24 py-8">
