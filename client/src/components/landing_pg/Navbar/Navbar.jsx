@@ -21,6 +21,7 @@ export default function Navbar() {
     console.log('signUp')
     registerModal.onOpen();
   }
+  
   return (
     <div className='topbar'>
         <div className="topbarWrapper">

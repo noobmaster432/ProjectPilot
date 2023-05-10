@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import Comment from "./Comment";
-import axios from "axios";
+import useCommentStore from "../../hooks/useCommentStore";
 
 const cmt = [
   {
@@ -44,40 +44,21 @@ const cmt = [
 
 const Comments = ({ project, isPage }) => {
     console.log(project?._id);
-    // const loginDetail=localStorage.getItem('loginDetail');
-    // const userID=JSON.parse(loginDetail);
     const loginData = JSON.parse(localStorage.getItem("loginData"));
     const userID = loginData?.other?._id;
 
-  const [comments, setComments] = useState([]);
-  // to get all the comments of a project
+  const [comment, setComment] = useState("");
+  const { comments, fetchComments, postComment } = useCommentStore();
+
   useEffect(() => {
-    const getComments = async () => {
-      const { data } = await axios.get(`http://localhost:5000/api/suggestion/getSuggestions/${project?._id}`);
-      setComments(data);
-    };
-    getComments(); 
-  }, [project?._id]);
+    fetchComments(project?._id);
+  }, [fetchComments, project?._id]);
 
-  // console.log(comments);
-  const [comment, setComment] = useState('');
-
-  const handleClick = async(e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    console.log("hello");
-    try{
-      const { data } = await axios.post(`http://localhost:5000/api/suggestion/addSuggestion`, {
-        suggestion: comment,
-        userId:userID,
-        projectId:project?._id
-      });
-      console.log(data);
-      setComments([...comments, data]);
-      setComment('');
-    }catch(err){
-      console.log(err)
-    }
-  }
+    postComment({suggestion: comment, userId: userID, projectId: project?._id});
+    setComment("");
+  };
   
   return (
     <div className={`bg-zinc-800 shadow-lg rounded-sm p-6 mb-8 ${isPage ? "h-fit -mt-20 mx-4" : "mt-6"}`}>

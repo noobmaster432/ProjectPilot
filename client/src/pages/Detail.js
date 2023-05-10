@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Main from "../components/detail/Main";
 import Side from "../components/detail/Side";
-import axios from "axios";
+import useProjectDetailStore from "../hooks/useProjectDetailStore";
 import { useLocation } from "react-router-dom";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import useEditModal from "../hooks/useEditModal";
@@ -12,14 +12,20 @@ const Detail = () => {
 
   const edit = () => {
     editModal.onOpen();
-    console.log("hi");
   };
 
   const del = () => {
     console.log("deleted");
   };
 
-  const [project, setProject] = useState(undefined);
+  const { project, fetchProjectData } = useProjectDetailStore();
+
+  const { pathname } = useLocation();
+  const id = pathname.split("/")[2];
+
+  useEffect(() => {
+    fetchProjectData(id);
+  }, [id, fetchProjectData]);
 
   // const Project = {
   //   id: 1,
@@ -54,24 +60,6 @@ const Detail = () => {
   //     }
   //   ]
   // };
-
-  const { pathname } = useLocation();
-  const id = pathname.split("/")[2];
-  console.log(id);
-
-  useEffect(() => {
-    const getData=async()=>{
-      const res = await axios.get(
-        `http://localhost:5000/api/project/getproject/${id}`
-      );
-        console.log(res.data.project);
-        setProject(res.data?.project);
-    }
-    getData();
-
-  }
-  , [id]);
-  
 
   return (
     <div className="m-8">

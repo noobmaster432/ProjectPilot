@@ -32,7 +32,7 @@ const createProject = asyncHandler(async (req, res) => {
                 imageUrl = uploadedFile.secure_url;
             }
 
-        }
+        } 
         const dataArr = gitHubRepoLink.split("/");
         const repoURL = `https://api.github.com/repos/${dataArr[3]}/${dataArr[4]}`
         console.log(repoURL)

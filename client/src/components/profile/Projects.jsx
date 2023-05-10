@@ -1,12 +1,21 @@
 import useCreateModal from "../../hooks/useCreateModal";
 import ProjectCard from "../ProjectCard";
 import { IoAddOutline } from "react-icons/io5";
-import { useState,useEffect } from "react";
-import axios from 'axios';
+import { useEffect } from "react";
+import useProjectsStore from "../../hooks/useProjectsStore";
 
 const ProfileProjects = ({ isPage }) => {
   const createModal = useCreateModal();
-  const [ProjectData,setProjectData]=useState([]);
+
+  const add = () => {
+    createModal.onOpen();
+  };
+
+  const { projectData, fetchProjectData } = useProjectsStore();
+
+  useEffect(() => {
+    fetchProjectData();
+  }, [fetchProjectData]);
 
   // const ProjectData = [
   //   {
@@ -53,23 +62,6 @@ const ProfileProjects = ({ isPage }) => {
   //   },
   // ];
 
-  const add = () => {
-    createModal.onOpen();
-  }
-
-  useEffect(()=>{
-    const fetchProjects=async()=>{
-      try {
-        const res = await axios.get("http://localhost:5000/api/project/getallprojects");
-        console.log(res.data.projects)
-        setProjectData(res.data.projects);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchProjects();
-  },[])
-
   return (
     <div
       className={`bg-zinc-800 shadow-lg py-6 rounded-sm ${
@@ -91,7 +83,7 @@ const ProfileProjects = ({ isPage }) => {
         )}
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-        {isPage && (ProjectData?.map(
+        {isPage && (projectData?.map(
           ({
             title,
             _id,
@@ -117,7 +109,7 @@ const ProfileProjects = ({ isPage }) => {
             />
           )
         ))}
-        {!isPage && (ProjectData.splice(0,4)?.map(
+        {!isPage && (projectData.splice(0,4)?.map(
           ({
             title,
             _id,
